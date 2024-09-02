@@ -1,3 +1,10 @@
+# frozen_string_literal: true
+
+require 'open-uri'
+require 'faker'
+
+Faker::Config.locale = :es
+
 puts "Clearing existing data..."
 ReviewAmenity.destroy_all
 Amenity.destroy_all
@@ -33,13 +40,26 @@ locations = [
   )
 end
 
-# Attach Cloudinary image placeholders to locations
-puts "Attaching image placeholders to locations..."
+# Define Cloudinary Image URLs
+cloudinary_urls = [
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306179/swimfinder/hr0t9uv7hyfx08bo5c9a.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306181/swimfinder/nlogrhezgmn2phak6wtw.webp",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306179/swimfinder/groirogbnswzpclymt74.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/sjj3llrxmruxy85ohzua.webp",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/nbycwgfpp630jtifg13j.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/gqwijgwpwqaz6clzdi4g.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306181/swimfinder/zwtsysndkjybwkceeejv.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/ituyeovjfcxbetwtlc7p.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/gv4mpg3iq1hbqwlh5cc8.jpg",
+  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306181/swimfinder/hvhtk5svdhuhxq1rn3gj.webp",
+]
+
+puts "Attaching Cloudinary images to locations..."
 locations.each_with_index do |location, index|
+  cloudinary_url = cloudinary_urls[index]
   location.image.attach(
-    io: StringIO.new("Placeholder for #{location.name}"),
-    filename: "location_image_#{index + 1}.jpg",
-    content_type: 'image/jpeg'
+    io: URI.open(cloudinary_url),
+    filename: File.basename(cloudinary_url)
   )
 end
 
