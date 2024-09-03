@@ -1,24 +1,6 @@
-
-
-
-
 <div class="map-wrap">
   <div class="col-sm-8 my-3">
-    <%= form_with url: search_locations_path, method: :get, class: "d-flex", data: { controller: "map-search", action: "submit->map-search#submit" } do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find a spot",
-            data: {
-              map_search_target: "input",
-              controller: "mapbox-geocoder",
-              mapbox_geocoder_api_key_value: ENV['MAPBOX_API_KEY'],
-              mapbox_geocoder_marker_value: "false",
-              action: "input->map-search#debugInput"  # Add this line
-            }
-        %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
+
   </div>
 
   <div class="map"
@@ -26,5 +8,3 @@
     data-map-spots-value="<%= @spots.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-
-

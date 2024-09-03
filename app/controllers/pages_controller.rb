@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     else
       @locations = Location.all
     end
+    @spots = []
   end
 
   def search_locations
