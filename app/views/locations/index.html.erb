@@ -1,12 +1,1 @@
-<div class="locations">
-  <% @locations.each do |location| %>
-    <h2><%= location.name %></h2>
-    <p><%= location.address %></p>
-  <% end %>
-</div>
 
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-spots-value="<%= @spots.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>

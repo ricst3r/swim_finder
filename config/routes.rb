@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
 
   get 'users/:username', to: 'users#show', as: :user
+
+  get 'search_locations', to: 'pages#search_locations'
 end

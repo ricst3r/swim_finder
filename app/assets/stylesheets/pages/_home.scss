@@ -1,1 +1,19 @@
+
+
+
 // Specific CSS for your home-page
+.map-wrap {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.mapboxgl-canvas-container {
+  height: 100vh;
+}
+
+body, html {
+  overflow-x: hidden;
+}

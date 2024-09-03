@@ -1,1 +1,25 @@
-new review page
+<h1>New Review for <%= @location.name %></h1>
+
+<%= form_with(model: [@location, @review], local: true) do |form| %>
+  <div>
+    <%= form.label :content, "Review" %>
+    <%= form.text_area :content, rows: 5 %>
+  </div>
+
+  <div>
+    <%= form.label :rating %>
+    <%= form.select :rating, options_for_select(1..5) %>
+  </div>
+
+  <h3>Amenities</h3>
+  <div>
+    <%= form.collection_check_boxes :amenity_ids, Amenity.all, :id, :title do |b| %>
+      <div>
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= form.submit "Submit Review" %>
+<% end %>
