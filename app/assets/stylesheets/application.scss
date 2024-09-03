@@ -10,3 +10,20 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/favorites";
+
+/* ... existing styles ... */
+
+.iphone-container {
+  width: 390px;
+  height: 844px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: lightblue;
+}
+
+/* ... other styles ... */

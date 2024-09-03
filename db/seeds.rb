@@ -30,7 +30,6 @@ users = 4.times.map do |i|
 end
 
 # Upload profile pictures to Cloudinary and assign to users
-
 profile_pic_urls = [
   'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/glwuofhdx16mj8qb4arr.png',
   'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366301/gklyb0xzgojn5vk3u90p.png',
@@ -46,7 +45,7 @@ users.each_with_index do |user, index|
   cloudinary_url = profile_pic_urls[index]
   user.image.attach(
     io: URI.open(cloudinary_url),
-    filename: "profile_#{index + 1}.jpg"
+    filename: File.basename(cloudinary_url)
   )
 end
 
