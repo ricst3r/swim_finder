@@ -1,14 +1,9 @@
+<div class="map-wrap map-responsive">
 
-welcome home
-<br>
-cloudinary works ✓
-<br>
-<%= cl_image_tag("htct99gd8hdkrhqdil2k",
-      width: 400, height: 300, crop: :fill) %>
-<br>
-for avatars:
-<br>
-<!-- for face detection -->
-<%= cl_image_tag("samples/people/kitchen-bar",
-      width: 150, height: 150, crop: :thumb, gravity: :face) %>
+  <div class="map"
+    data-controller="map"
+    data-map-spots-value="<%= @spots.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 
+</div>
