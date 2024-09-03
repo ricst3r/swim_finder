@@ -3,7 +3,7 @@
 require 'open-uri'
 require 'faker'
 
-Faker::Config.locale = :es
+Faker::Config.locale = :en
 
 puts "Clearing existing data..."
 ReviewAmenity.destroy_all
