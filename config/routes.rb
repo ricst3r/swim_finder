@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:index]
 
-  resources :users, only: [:show]
+  get 'users/:username', to: 'users#show', as: :user
 end
