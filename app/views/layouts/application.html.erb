@@ -11,10 +11,12 @@
   </head>
 
   <body>
-    <div class="iphone-container" style="width: 390px; height: 844px; margin: 0 auto; overflow: hidden; position: relative;">
+    <div class="iphone-container" style="width: 390px; height: 844px; margin: 0 auto; overflow: hidden; position: relative; border: 1px solid #000; border-radius: 20px;">
       <%= yield %>
 
-      <%= render 'shared/navbar' %>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%;">
+        <%= render 'shared/navbar' %>
+      </div>
 
       <div class="flashmsg">
         <p class="notice"><%= notice %></p>

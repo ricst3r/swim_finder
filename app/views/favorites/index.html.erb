@@ -1,6 +1,15 @@
-favorites page
-<% @favorites.each do |favorite| %>
-  <div class="favorite">
-    <%= favorite.name %>
-  </div>
+<h1>My Favorites</h1>
+
+<% if @favorites.any? %>
+  <ul class="favorites-list">
+    <% @favorites.each do |favorite| %>
+      <li class="favorite-item">
+        <%= link_to favorite.location.name, location_path(favorite.location) %>
+        <p>Rating: <%= favorite.location.rating %>/5</p>
+        <%= image_tag favorite.location.image, class: "favorite-image", height: 100 if favorite.location.image.attached? %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You haven't saved any favorites yet.</p>
 <% end %>

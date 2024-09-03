@@ -1,7 +1,7 @@
 <div class="user-profile">
   <div class="profile-header">
     <%= cl_image_tag "beach_background", class: "background-image", onerror: "this.style.display='none'" %>
-    <% if @user.photo.attached? %>
+    <% if @user.image.attached? %>
       <%= cl_image_tag @user.photo.key, class: "profile-picture", onerror: "this.style.display='none'" %>
     <% end %>
   </div>
@@ -22,10 +22,10 @@
     <div class="favorites">
       <h3>Favourites</h3>
       <% if @user.favorites.any? %>
-        <% @user.favorites.each do |location| %>
+        <% @user.favorites.each do |favorite| %>
           <div class="favorite-item">
-            <%= cl_image_tag location.image.key, class: "favorite-image", onerror: "this.style.display='none'" if location.image.attached? %>
-            <span><%= location.name %></span>
+            <%= cl_image_tag favorite.location.image.key, class: "favorite-image", height: 100, onerror: "this.style.display='none'" if favorite.location.image.attached? %>
+            <span><%= favorite.location.name %></span>
           </div>
         <% end %>
       <% else %>

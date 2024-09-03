@@ -1,1 +1,18 @@
-new location page
+<div class="container">
+  <h1 class="text-center mb-4">Add New Location</h1>
+  <%= form_with(model: @location, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Enter location name" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :address, class: "form-label" %>
+      <%= form.text_field :address, class: "form-control", placeholder: "Enter address" %>
+    </div>
+
+    <div class="text-center">
+      <%= form.submit "Create Location", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
