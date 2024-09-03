@@ -5,5 +5,4 @@ import "@popperjs/core"
 import "bootstrap"
 
 // Add this line to import your CSS
-import "../stylesheets/application.scss"
-
+import "../assets/stylesheets/application.scss"

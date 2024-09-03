@@ -1,4 +1,3 @@
-location index page
 <div class="locations">
   <% @locations.each do |location| %>
     <h2><%= location.name %></h2>
@@ -8,5 +7,6 @@ location index page
 
 <div style="width: 100%; height: 600px;"
   data-controller="map"
-  data-map-markers-value="<%= @spots.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  data-map-spots-value="<%= @spots.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
