@@ -1,4 +1,7 @@
 @import "bootstrap";
+
+@import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
 // General styles for mobile-first approach
 html, body {
   height: 100%;
@@ -99,3 +102,4 @@ body {
     height: 60px; // Slightly taller footer for better touch targets
   }
 }
+
