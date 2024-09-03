@@ -1,1 +1,6 @@
 favorites page
+<% @favorites.each do |favorite| %>
+  <div class="favorite">
+    <%= favorite.name %>
+  </div>
+<% end %>
