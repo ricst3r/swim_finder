@@ -3,7 +3,11 @@
 require 'open-uri'
 require 'faker'
 
-Faker::Config.locale = :en
+# Set Faker locale to English
+Faker::Config.locale = 'en'
+
+# Force I18n locale to English
+I18n.locale = :en
 
 puts "Clearing existing data..."
 ReviewAmenity.destroy_all
