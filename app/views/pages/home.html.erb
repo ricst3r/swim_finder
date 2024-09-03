@@ -1,4 +1,5 @@
 
+
 <div class="map-wrap">
   <div class="col-sm-8 my-3">
     <%= form_with url: search_locations_path, method: :get, class: "d-flex", data: { controller: "map-search", action: "submit->map-search#submit" } do %>
@@ -23,4 +24,5 @@
     data-map-spots-value="<%= @spots.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+
 

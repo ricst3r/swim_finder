@@ -11,9 +11,12 @@
   </head>
 
   <body>
+
       <%= yield %>
 
-      <%= render 'shared/navbar' %>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%;">
+        <%= render 'shared/navbar' %>
+      </div>
 
       <div class="flashmsg">
         <p class="notice"><%= notice %></p>

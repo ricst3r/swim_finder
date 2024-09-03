@@ -15,6 +15,7 @@ Amenity.destroy_all
 Review.destroy_all
 Location.destroy_all
 User.destroy_all
+Favorite.destroy_all
 
 # Create 4 users
 puts "Creating users..."
@@ -27,6 +28,27 @@ users = 4.times.map do |i|
     bio: Faker::Lorem.paragraph
   )
 end
+
+# Upload profile pictures to Cloudinary and assign to users
+profile_pic_urls = [
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/glwuofhdx16mj8qb4arr.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366301/gklyb0xzgojn5vk3u90p.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/ac8mj3ebw6byttxqxqmk.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/rkrypgnqgdixn567ihyu.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/vfvygltbf9p2qc30xps9.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366301/tv2xw3elhipuqfnkoye3.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366301/tiwqroy96kkk5rjlvwnw.png',
+  'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/gk9os3wvpnuuvbttzxc2.png'
+]
+
+users.each_with_index do |user, index|
+  cloudinary_url = profile_pic_urls[index]
+  user.image.attach(
+    io: URI.open(cloudinary_url),
+    filename: File.basename(cloudinary_url)
+  )
+end
+
 
 # Create 10 locations (beaches and swimming spots)
 puts "Creating locations..."
@@ -94,3 +116,22 @@ users.each do |user|
 end
 
 puts "Seed data created successfully!"
+
+Create favorites
+puts "Creating favorites..."
+users.each do |user|
+  # Ensure each user has at least one favorite
+  location = locations.sample
+  Favorite.create!(user: user, location: location)
+
+  # Randomly add more favorites for some users
+  if rand < 0.5
+    additional_favorites = rand(1..3)
+    additional_favorites.times do
+      location = locations.sample
+      Favorite.create!(user: user, location: location)
+    end
+  end
+end
+
+# puts "Favorites created successfully!"
