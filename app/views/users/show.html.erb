@@ -1,1 +1,51 @@
-user show page
+<div class="user-profile">
+  <div class="profile-header">
+    <%= cl_image_tag "beach_background", class: "background-image", onerror: "this.style.display='none'" %>
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag @user.photo.key, class: "profile-picture", onerror: "this.style.display='none'" %>
+    <% end %>
+  </div>
+
+  <div class="profile-info">
+    <h2><%= @user.name %></h2>
+    <p class="username">@<%= @user.username %></p>
+
+    <div class="action-buttons">
+      <%= button_to "Message", "#", method: :get, class: "btn btn-secondary" %>
+    </div>
+
+    <div class="about-me">
+      <h3>About Me</h3>
+      <p><%= @user.bio %></p>
+    </div>
+
+    <div class="favorites">
+      <h3>Favourites</h3>
+      <% if @user.favorites.any? %>
+        <% @user.favorites.each do |location| %>
+          <div class="favorite-item">
+            <%= cl_image_tag location.image.key, class: "favorite-image", onerror: "this.style.display='none'" if location.image.attached? %>
+            <span><%= location.name %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Add some favorites!</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="user-swims">
+  <h3>My Swim Locations</h3>
+  <% if @user.locations.any? %>
+    <% @user.locations.each do |location| %>
+      <div class="swim-item">
+        <%= cl_image_tag location.image.key, class: "swim-image", height: 100, onerror: "this.style.display='none'" if location.image.attached? %>
+        <span><%= location.name %></span>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You haven't added any swim locations yet.</p>
+    <%= link_to "Add a new swim location", new_location_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
