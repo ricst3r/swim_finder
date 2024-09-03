@@ -21,7 +21,7 @@ export default class extends Controller {
 
   #addSpotsToMap() {
     this.spotsValue.forEach((spot) => {
-      new mapboxgl.Spot()
+      new mapboxgl.Marker()
         .setLngLat([ spot.lng, spot.lat ])
         .addTo(this.map)
     })
