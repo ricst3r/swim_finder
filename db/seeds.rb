@@ -117,7 +117,7 @@ end
 
 puts "Seed data created successfully!"
 
-Create favorites
+#Create favorites
 puts "Creating favorites..."
 users.each do |user|
   # Ensure each user has at least one favorite
