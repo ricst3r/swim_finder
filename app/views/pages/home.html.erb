@@ -1,10 +1,16 @@
 
+<div class="map-wrap">
+  <div class="col-sm-8 my-3">
+  </div>
+
+
 <div class="map-wrap position-relative">
   <div class="map"
     data-controller="map"
     data-map-spots-value="<%= @spots.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+
 
   <div class="col-sm-8 my-3 position-absolute top-0 start-50 translate-middle-x pt-3">
 
@@ -26,4 +32,5 @@
 
   </div>
 </div>
+
 
