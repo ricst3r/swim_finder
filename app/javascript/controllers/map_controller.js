@@ -19,9 +19,9 @@ export default class extends Controller {
     })
 
     // Add fullscreen control
-    this.map.addControl(new mapboxgl.FullscreenControl());
+    // this.map.addControl(new mapboxgl.FullscreenControl());
 
-    //this.#addMarkersToMap()
+    this.#addMarkersToMap()
     //this.#fitMapToMarkers()
 
 
@@ -31,34 +31,34 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.spotsValue.forEach((spot) => {
-      const popup = new mapboxgl.Popup().setHTML(spot.info_window)
+     // const popup = new mapboxgl.Popup().setHTML(spot.info_window)
       new mapboxgl.Marker()
         .setLngLat([ spot.lng, spot.lat ])
-        .setPopup(popup)
+        //.setPopup(popup)
         .addTo(this.map)
     })
   }
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
-    this.spotsValue.forEach(spot => bounds.extend([ spot.lng, spot.lat ]))
+    this.spotsValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 
-  updateMap(center, locations) {
-    this.map.setCenter(center)
-    this.map.setZoom(12) // Adjust zoom level as needed
+  // updateMap(center, locations) {
+  //   this.map.setCenter(center)
+  //   this.map.setZoom(12) // Adjust zoom level as needed
 
-    // Clear existing markers
-    this.markers.forEach(marker => marker.remove())
-    this.markers = []
+  //   // Clear existing markers
+  //   this.markers.forEach(marker => marker.remove())
+  //   this.markers = []
 
-    // Add new markers
-    locations.forEach(location => {
-      const marker = new mapboxgl.Marker()
-        .setLngLat([location.lng, location.lat])
-        .addTo(this.map)
-      this.markers.push(marker)
-    })
-  }
+  //   // Add new markers
+  //   locations.forEach(location => {
+  //     const marker = new mapboxgl.Marker()
+  //       .setLngLat([location.lng, location.lat])
+  //       .addTo(this.map)
+  //     this.markers.push(marker)
+  //   })
+  //}
 }
