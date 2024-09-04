@@ -18,3 +18,4 @@ Rails.application.routes.draw do
   get 'users/:username', to: 'users#show', as: :user, constraints: { username: /[^\/]+/ }
 
   get 'search_locations', to: 'pages#search_locations'
+end
