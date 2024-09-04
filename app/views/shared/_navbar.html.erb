@@ -1,5 +1,15 @@
 <nav class="bottom-nav">
   <div class="bottom-nav-container">
+    <% if user_signed_in? %>
+      <%= link_to destroy_user_session_path, class: "nav-item", data: {turbo_method: :delete} do %>
+        <div class="icon-container">
+          <i class="fa-solid fa-door-open"></i>
+        </div>
+        <p>Log out</p>
+      <% end %>
+    <% end %>
+
+
     <%= link_to root_path, class: "nav-item" do %>
       <div class="icon-container">
         <i class="fa-regular fa-map"></i>
@@ -10,7 +20,7 @@
       <div class="icon-container">
         <i class="fa-solid fa-heart-circle-check"></i>
       </div>
-      <p>Saved</p>
+      <p>Favourites</p>
     <% end %>
     <% if user_signed_in? %>
       <%= link_to user_path(current_user.username), class: "nav-item" do %>
@@ -27,6 +37,6 @@
         <p>Sign In</p>
       <% end %>
     <% end %>
+
   </div>
 </nav>
-<%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
