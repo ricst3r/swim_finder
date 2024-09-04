@@ -1,6 +1,7 @@
 // app/javascript/controllers/map_controller.js
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
   static values = {
@@ -20,8 +21,8 @@ export default class extends Controller {
     // Add fullscreen control
     this.map.addControl(new mapboxgl.FullscreenControl());
 
-    this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    //this.#addMarkersToMap()
+    //this.#fitMapToMarkers()
 
 
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
