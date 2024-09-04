@@ -38,3 +38,12 @@ class PagesController < ApplicationController
     Location.near([center[:lat], center[:lng]], 10)
   end
 end
+
+def favorites
+  @favorites = current_user.favorites
+end
+
+def user
+  @user = User.find_by(username: params[:username])
+  @locations = @user.locations
+end

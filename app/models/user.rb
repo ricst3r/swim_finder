@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :locations
   has_many :favorites
+
+  validates :username, presence: true, uniqueness: true
 end
