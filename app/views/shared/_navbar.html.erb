@@ -7,34 +7,32 @@
         </div>
         <p>Log out</p>
       <% end %>
-    <% end %>
-
-
-    <%= link_to root_path, class: "nav-item" do %>
+      <%= link_to root_path, class: "nav-item" do %>
       <div class="icon-container">
         <i class="fa-regular fa-map"></i>
       </div>
       <p>Map</p>
-    <% end %>
-    <%= link_to favorites_path, class: "nav-item" do %>
+      <% end %>
+      <%= link_to favorites_path, class: "nav-item" do %>
       <div class="icon-container">
         <i class="fa-solid fa-heart-circle-check"></i>
       </div>
       <p>Favourites</p>
-    <% end %>
-    <% if user_signed_in? %>
-      <%= link_to user_path(current_user.username), class: "nav-item" do %>
-        <div class="icon-container">
-          <i class="fa-regular fa-user"></i>
-        </div>
-        <p>Profile</p>
       <% end %>
-    <% else %>
+      <%= link_to user_path(current_user.username), class: "nav-item" do %>
+      <div class="icon-container">
+        <i class="fa-regular fa-user"></i>
+      </div>
+      <p>Profile</p>
+      <% end %>
+    <% end %>
+
+    <% if not user_signed_in? %>
       <%= link_to new_user_session_path, class: "nav-item" do %>
-        <div class="icon-container">
-          <i class="fa-regular fa-user"></i>
-        </div>
-        <p>Sign In</p>
+      <div class="icon-container">
+        <i class="fa-regular fa-user"></i>
+      </div>
+      <p>Sign In</p>
       <% end %>
     <% end %>
 
