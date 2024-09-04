@@ -9,7 +9,12 @@ class PagesController < ApplicationController
     else
       @locations = Location.all
     end
-    @spots = []
+    @spots = @locations.geocoded.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude
+      }
+    end
   end
 
   def search_locations
