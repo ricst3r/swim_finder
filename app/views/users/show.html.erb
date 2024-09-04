@@ -3,7 +3,7 @@
     <div class="row no-gutters align-items-center">
       <div class="col-4">
         <% if @user.image.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "profile-picture img-fluid rounded-left", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
+          <%= cl_image_tag @user.image.key, class: "profile-picture img-fluid rounded-left", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
         <% end %>
       </div>
       <div class="col-8">
@@ -17,38 +17,66 @@
   </div>
 
   <div class="profile-info card bg-white shadow-sm rounded p-3 mb-3">
-    <div class="about-me">
+    <div class="about-me card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
       <h3>About Me</h3>
       <p><%= @user.bio %></p>
     </div>
-
-    <div class="favorites">
+    <div class="favorites card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
       <h3>Favourites</h3>
       <% if @user.favorites.any? %>
-        <% @user.favorites.each do |favorite| %>
-          <div class="favorite-item">
-            <%= cl_image_tag favorite.location.image.key, class: "favorite-image", height: 100, onerror: "this.style.display='none'" if favorite.location.image.attached? %>
-            <span><%= favorite.location.name %></span>
-          </div>
-        <% end %>
+        <div class="row">
+          <% @user.favorites.each do |favorite| %>
+            <div class="col-md-4 mb-3">
+              <div class="favorite-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px;">
+                <div class="row no-gutters align-items-center">
+                  <div class="col-4">
+                    <% if favorite.location.image.attached? %>
+                      <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                    <% end %>
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body p-0">
+                      <h5 class="card-title mb-0"><%= favorite.location.name %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% else %>
         <p>Add some favorites!</p>
       <% end %>
     </div>
-  </div>
-</div>
 
-<div class="user-swims">
-  <h3>My Swim Locations</h3>
-  <% if @user.locations.any? %>
-    <% @user.locations.each do |location| %>
-      <div class="swim-item">
-        <%= cl_image_tag location.image.key, class: "swim-image", height: 100, onerror: "this.style.display='none'" if location.image.attached? %>
-        <span><%= location.name %></span>
-      </div>
+    <% if current_user == @user %>
+      <div class="user-swims card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
+      <h3>My Swim Locations</h3>
+      <% if @user.locations.any? %>
+        <div class="row">
+          <% @user.locations.each do |location| %>
+            <div class="col-md-4 mb-3">
+              <div class="swim-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px;">
+                <div class="row no-gutters align-items-center">
+                  <div class="col-4">
+                    <% if location.image.attached? %>
+                      <%= cl_image_tag location.image.key, class: "swim-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                    <% end %>
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body p-0">
+                      <h5 class="card-title mb-0"><%= location.name %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>You haven't added any swim locations yet.</p>
+        <%= link_to "Add a new swim location", new_location_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
     <% end %>
-  <% else %>
-    <p>You haven't added any swim locations yet.</p>
-    <%= link_to "Add a new swim location", new_location_path, class: "btn btn-primary" %>
-  <% end %>
-</div>
+  </div>
