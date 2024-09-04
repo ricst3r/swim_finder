@@ -27,18 +27,39 @@ export default class extends Controller {
 
     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl }))
-  }
 
+  //   this.map.on('click', 'locations', (e) => {
+  //     const locationId = e.features[0].properties.id;
+
+  //     fetch(`/locations/${locationId}`)
+  //       .then(response => response.json())
+  //       .then(location => {
+  //         // Create and show a popup with the location details
+  //         new mapboxgl.Popup()
+  //           .setLngLat([location.longitude, location.latitude])
+  //           .setHTML(`
+  //             <h3>${location.name}</h3>
+  //             <p>${location.description}</p>
+  //           `)
+  //           .addTo(this.map);
+  //       })
+  //       .catch(error => console.error('Error:', error));
+  //   });
+   }
   #addMarkersToMap() {
     console.log(this.spotsValue)
     this.spotsValue.forEach((spot) => {
-      //const popup = new mapboxgl.Popup().setHTML(spot.info_window)
+      const popup = new mapboxgl.Popup().setHTML(spot.info_window)
+
+      // Attach popup to the marker directly
       new mapboxgl.Marker()
-        .setLngLat([ spot.lng, spot.lat ])
-        //.setPopup(popup)
+        .setLngLat([spot.lng, spot.lat])
+        .setPopup(popup) // Links the popup to the marker
         .addTo(this.map)
     })
   }
+
+
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
