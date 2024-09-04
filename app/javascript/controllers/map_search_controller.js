@@ -8,10 +8,8 @@ export default class extends Controller {
   }
 
   submit(event) {
-    event.preventDefault()
+    // Remove this line to allow form submission
+    // event.preventDefault()
     console.log("Form submitted with query:", this.inputTarget.value)
-    // Implement the search functionality here
-    // You might want to make an AJAX request to your backend
-    // and update the map with the results
   }
 }
