@@ -100,21 +100,42 @@ amenities = [
 
 # Create 8 reviews (2 for each user) and associate amenities
 puts "Creating reviews and associating amenities..."
+# Ensure each location has at least one review
+locations.each do |location|
+  user = users.sample
+  Review.create!(
+    content: Faker::Lorem.paragraph,
+    rating: rand(1..5),
+    user: user,
+    location: location
+  )
+end
+
+# Ensure each user has written at least one review
 users.each do |user|
-  2.times do
-    review = Review.create!(
-      content: Faker::Lorem.paragraph,
-      rating: rand(1..5),
-      user: user,
-      location: locations.sample
-    )
+  next if user.reviews.any?
+  Review.create!(
+    content: Faker::Lorem.paragraph,
+    rating: rand(1..5),
+    user: user,
+    location: locations.sample
+  )
+end
+
+# Add additional random reviews
+10.times do
+  review = Review.create!(
+    content: Faker::Lorem.paragraph,
+    rating: rand(1..5),
+    user: users.sample,
+    location: locations.sample
+  )
 
     # Associate 2-4 random amenities with each review
     amenities.sample(rand(2..4)).each do |amenity|
       ReviewAmenity.create!(review: review, amenity: amenity)
     end
   end
-end
 
 puts "Seed data created successfully!"
 

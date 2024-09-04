@@ -3,10 +3,11 @@ class LocationsController < ApplicationController
   def index
     @locations = Location.all
     # The `geocoded` scope filters only flats with coordinates
- 
+
   end
 
   def show
+    @location = Location.find(params[:id])
   end
 
   def new
