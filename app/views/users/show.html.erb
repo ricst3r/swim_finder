@@ -31,12 +31,14 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col-4">
                     <% if favorite.location.image.attached? %>
-                      <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                      <%= link_to location_path(favorite.location) do %>
+                        <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                      <% end %>
                     <% end %>
                   </div>
                   <div class="col-8">
                     <div class="card-body p-0">
-                      <h5 class="card-title mb-0"><%= favorite.location.name %></h5>
+                      <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location) %></h5>
                     </div>
                   </div>
                 </div>
@@ -60,12 +62,14 @@
                 <div class="row no-gutters align-items-center">
                   <div class="col-4">
                     <% if location.image.attached? %>
-                      <%= cl_image_tag location.image.key, class: "swim-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                      <%= link_to location_path(location) do %>
+                        <%= cl_image_tag location.image.key, class: "swim-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                      <% end %>
                     <% end %>
                   </div>
                   <div class="col-8">
                     <div class="card-body p-0">
-                      <h5 class="card-title mb-0"><%= location.name %></h5>
+                      <h5 class="card-title mb-0"><%= link_to location.name, location_path(location) %></h5>
                     </div>
                   </div>
                 </div>
