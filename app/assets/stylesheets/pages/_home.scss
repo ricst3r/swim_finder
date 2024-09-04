@@ -19,21 +19,7 @@ body, html {
   overflow-x: hidden;
 }
 
-.mapboxgl-ctrl-geocoder--input {
-  position: absolute;
-  left: 0 !important;
-  right: 0 !important;
-  top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%; // Responsive width
-  max-width: 351px; // Maximum width
-  height: 50px;
-  border: 1px solid #000000;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  // Remove redundant border-radius properties
-}
+
 .mapboxgl-popup-content {
   padding: 15px;
   border-radius: 8px;
@@ -52,4 +38,15 @@ body, html {
     line-height: 1.4;
     color: #666;
   }
+
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
+
+.mapboxgl-ctrl-logo {
+  display: none;
+}
+
+.mapboxgl-ctrl-icon {
+  display: none;
 }
