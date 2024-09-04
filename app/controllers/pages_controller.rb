@@ -12,7 +12,8 @@ class PagesController < ApplicationController
     @spots = @locations.geocoded.map do |location|
       {
         lat: location.latitude,
-        lng: location.longitude
+        lng: location.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { location: location })
       }
     end
   end
@@ -41,6 +42,21 @@ class PagesController < ApplicationController
     # Implement logic to find nearby locations
     # This is just an example
     Location.near([center[:lat], center[:lng]], 10)
+  end
+
+  def show_location
+    @location = Location.find(params[:id])
+
+    respond_to do |format|
+      format.json { render json: {
+        id: @location.id,
+        name: @location.name,
+        description: @location.description,
+        latitude: @location.latitude,
+        longitude: @location.longitude
+        # Add any other attributes you want to include
+      } }
+    end
   end
 end
 
