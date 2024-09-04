@@ -1,41 +1,36 @@
+
 <div class="map-wrap">
   <div class="col-sm-8 my-3">
   </div>
 
+
+<div class="map-wrap position-relative">
   <div class="map"
     data-controller="map"
     data-map-spots-value="<%= @spots.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-  <!-- The search bar you're referring to is typically added by the Mapbox GL JS Geocoder plugin.
-       It's not directly in your HTML, but rather injected by JavaScript.
 
-       To edit this search bar, you would typically customize it through JavaScript options
-       when initializing the Geocoder control. However, if you want more direct control,
-       you can create your own input and style it similarly. Here's an example: -->
 
-  <div id="custom-geocoder" class="mapboxgl-ctrl-geocoder mapboxgl-ctrl">
-    <input type="text"
-           id="custom-geocoder-input"
-           class="mapboxgl-ctrl-geocoder--input"
-           placeholder="Search"
-           aria-label="Search">
+  <div class="col-sm-8 my-3 position-absolute top-0 start-50 translate-middle-x pt-3">
+
+    <%= form_with url: search_locations_path, method: :get, class: "d-flex", data: { controller: "map-search", action: "submit->map-search#submit" } do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a spot",
+            data: {
+              map_search_target: "input",
+              controller: "mapbox-geocoder",
+              mapbox_geocoder_api_key_value: ENV['MAPBOX_API_KEY'],
+              mapbox_geocoder_marker_value: "false",
+              action: "input->map-search#debugInput"
+            }
+        %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
   </div>
+</div>
 
-  <!-- To make this work with Mapbox, you'd need to add some JavaScript to handle the search functionality.
-       You might also want to add some CSS to style it similarly to the Mapbox geocoder.
-
-       Remember to initialize this custom search in your map controller or relevant JavaScript file. For example:
-
-       const customGeocoder = new MapboxGeocoder({
-         accessToken: mapboxgl.accessToken,
-         mapboxgl: mapboxgl,
-         marker: false,
-         customGeocoder: true,
-         customGeocoder: document.getElementById('custom-geocoder-input')
-       });
-
-       map.addControl(customGeocoder);
-
-       This way, you can have more control over the HTML structure and styling of the search bar. -->
 

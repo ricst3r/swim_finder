@@ -29,6 +29,7 @@ users = 4.times.map do |i|
   )
 end
 
+
 # Upload profile pictures to Cloudinary and assign to users
 profile_pic_urls = [
   'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725366300/glwuofhdx16mj8qb4arr.png',
@@ -122,8 +123,7 @@ puts "Creating favorites..."
 users.each do |user|
   # Ensure each user has at least one favorite
   location = locations.sample
-  Favorite.create!(user: user, location: location)
-
+  f = Favorite.create!(user: user, location: location)
   # Randomly add more favorites for some users
   if rand < 0.5
     additional_favorites = rand(1..3)
