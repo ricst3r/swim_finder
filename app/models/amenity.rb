@@ -1,3 +1,3 @@
 class Amenity < ApplicationRecord
-  has_many :locations, through: :location_amenities
+  has_many :reviews, through: :review_amenities
 end
