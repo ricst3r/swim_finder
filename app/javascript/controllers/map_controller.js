@@ -30,7 +30,7 @@ export default class extends Controller {
       mapboxgl: mapboxgl,
       localGeocoder: this.#forwardGeocoder.bind(this),
       zoom: 14,
-      placeholder: "Looking for swim spots...",
+      placeholder: "     Looking for swim spots...",
       marker: false
     })
 
@@ -71,7 +71,7 @@ export default class extends Controller {
           type: 'Point',
           coordinates: [spot.lng, spot.lat]
         },
-        place_name: spot.name || `SwimFind Spot found`,
+        place_name: spot.name || `    SwimFind Spot found`,
         place_type: ['place'],
         bbox: [spot.lng, spot.lat, spot.lng, spot.lat]
       }));
