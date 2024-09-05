@@ -12,11 +12,11 @@
 
                 <div class="mb-4">
                   <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
-                  <div class="star-rating d-flex justify-content-center">
-                    <% 5.downto(1) do |i| %>
-                      <%= form.radio_button :rating, i, id: "rating#{i}", class: "visually-hidden" %>
-                      <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars" do %>
-                        <i class="bi bi-star<%= form.object.rating && form.object.rating >= i ? '-fill' : '' %> text-warning"></i>
+                  <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
+                    <% 1.upto(5) do |i| %>
+                      <%= form.radio_button :rating, i, id: "rating#{i}", class: "visually-hidden", data: { action: "star-rating#updateStars", "star-rating-target": "input" } %>
+                      <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
+                        <i class="bi bi-star text-warning"></i>
                       <% end %>
                     <% end %>
                   </div>
