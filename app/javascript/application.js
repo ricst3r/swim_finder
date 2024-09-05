@@ -3,6 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+import "./star_rating.js"
 
 // Add this line to import your CSS
 // import "../assets/stylesheets/application.scss"
