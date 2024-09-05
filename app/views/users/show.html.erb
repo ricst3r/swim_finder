@@ -26,35 +26,37 @@
       <h3>About Me</h3>
       <p><%= @user.bio %></p>
     </div>
-    <div class="favorites card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
-      <h3>Favourites</h3>
-      <% if @user.favorites.any? %>
-        <div class="row">
-          <% @user.favorites.each do |favorite| %>
-            <div class="col-md-4 mb-3">
-              <div class="favorite-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px;">
-                <div class="row no-gutters align-items-center">
-                  <div class="col-4">
-                    <% if favorite.location.image.attached? %>
-                      <%= link_to location_path(favorite.location) do %>
-                        <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+    <% if current_user != @user %>
+      <div class="favorites card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
+        <h3>Favourites</h3>
+        <% if @user.favorites.any? %>
+          <div class="row">
+            <% @user.favorites.each do |favorite| %>
+              <div class="col-md-4 mb-3">
+                <div class="favorite-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px;">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-4">
+                      <% if favorite.location.image.attached? %>
+                        <%= link_to location_path(favorite.location) do %>
+                          <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </div>
-                  <div class="col-8">
-                    <div class="card-body p-0">
-                      <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location), class: "text-black text-decoration-none" %></h5>
+                    </div>
+                    <div class="col-8">
+                      <div class="card-body p-0">
+                        <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location), class: "text-black text-decoration-none" %></h5>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>Add some favorites!</p>
-      <% end %>
-    </div>
+            <% end %>
+          </div>
+        <% else %>
+          <p>No favorites yet.</p>
+        <% end %>
+      </div>
+    <% end %>
 
     <% if current_user == @user %>
       <div class="user-swims card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
