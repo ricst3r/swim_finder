@@ -24,28 +24,19 @@ export default class extends Controller {
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
 
+    // Erstellen Sie einen benutzerdefinierten Geocoder
+    const customGeocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl,
+      localGeocoder: this.#forwardGeocoder.bind(this),
+      zoom: 14,
+      placeholder: "Looking for swim spots...",
+      marker: false
+    })
 
-    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl }))
+    this.map.addControl(customGeocoder)
+  }
 
-  //   this.map.on('click', 'locations', (e) => {
-  //     const locationId = e.features[0].properties.id;
-
-  //     fetch(`/locations/${locationId}`)
-  //       .then(response => response.json())
-  //       .then(location => {
-  //         // Create and show a popup with the location details
-  //         new mapboxgl.Popup()
-  //           .setLngLat([location.longitude, location.latitude])
-  //           .setHTML(`
-  //             <h3>${location.name}</h3>
-  //             <p>${location.description}</p>
-  //           `)
-  //           .addTo(this.map);
-  //       })
-  //       .catch(error => console.error('Error:', error));
-  //   });
-   }
   #addMarkersToMap() {
     console.log(this.spotsValue)
     this.spotsValue.forEach((spot) => {
@@ -59,13 +50,33 @@ export default class extends Controller {
     })
   }
 
-
-
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
     console.log(this.spotsValue)
     this.spotsValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+  }
+
+  #forwardGeocoder(query) {
+    if (!query) return [];
+    console.log(this.spotsValue)
+    const features = this.spotsValue
+      .filter(spot =>
+        (spot.name && spot.name.toLowerCase().includes(query.toLowerCase())) ||
+        (spot.info_window && spot.info_window.toLowerCase().includes(query.toLowerCase()))
+      )
+      .map(spot => ({
+        center: [spot.lng, spot.lat],
+        geometry: {
+          type: 'Point',
+          coordinates: [spot.lng, spot.lat]
+        },
+        place_name: spot.name || `SwimFind Spot found`,
+        place_type: ['place'],
+        bbox: [spot.lng, spot.lat, spot.lng, spot.lat]
+      }));
+
+    return features;
   }
 
 }

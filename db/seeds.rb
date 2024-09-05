@@ -52,6 +52,7 @@ users.each_with_index do |user, index|
 end
 
 
+
 # Replace your API key here
 GOOGLE_PLACES_API_KEY = ENV['GOOGLE_PLACES_API_KEY']
 
@@ -78,6 +79,7 @@ locations = []
     locations << location
     puts "Created location: #{location.name}"
   end
+
 end
 
 # Define Cloudinary Image URLs

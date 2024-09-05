@@ -19,6 +19,9 @@ body, html {
   overflow-x: hidden;
 }
 
+.mapboxgl-ctrl-geocoder {
+  width: 100vw;
+}
 
 .mapboxgl-popup-content {
   padding: 15px;
@@ -45,5 +48,9 @@ a.mapboxgl-ctrl-logo {
 }
 
 div.mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-compact {
+  display: none;
+}
+
+div.mapboxgl-ctrl-geocoder--powered-by {
   display: none;
 }
