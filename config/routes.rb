@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :locations do
     resources :reviews, only: [:new, :create]
-    resources :favorites, only: [:create]
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :favorites, only: [:index]
@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   get 'search_locations', to: 'pages#search_locations'
 
-  resources :locations, only: [:new, :create]
+  resources :locations, only: [:new, :create,]
 end

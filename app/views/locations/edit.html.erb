@@ -1,0 +1,61 @@
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 my-5">
+      <div class="card shadow position-relative">
+        <%= link_to user_path(current_user.username), class: "position-absolute top-0 start-0 mt-3 ms-3 text-decoration-none" do %>
+          <span class="d-inline-flex align-items-center justify-content-center rounded-circle border border-secondary" style="width: 40px; height: 40px;">
+            <i class="bi bi-arrow-left fs-4 text-secondary fw-bold"></i>
+          </span>
+        <% end %>
+        <div class="card-body p-5">
+          <h2 class="card-title text-center mb-4">Edit Location</h2>
+          <%= form_with(model: @location, url: location_path(@location), method: :patch, local: true, class: "location-form") do |form| %>
+            <% if @location.errors.any? %>
+              <div id="error_explanation" class="alert alert-danger">
+                <h4><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h4>
+                <ul>
+                  <% @location.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-4">
+              <%= form.label :name, class: "form-label fw-bold" %>
+              <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter location name" %>
+            </div>
+
+            <div class="mb-4">
+                  <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
+                  <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
+                    <% 1.upto(5) do |i| %>
+                      <%= form.radio_button :rating, i, id: "rating#{i}", class: "visually-hidden", data: { action: "star-rating#updateStars", "star-rating-target": "input" } %>
+                      <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
+                        <i class="bi bi-star text-warning"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+
+            <div class="mb-4">
+              <%= form.label :address, class: "form-label fw-bold" %>
+              <div data-controller="address-autocomplete"
+                   data-address-autocomplete-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <%= form.label :image, "Update Image", class: "form-label fw-bold" %>
+              <%= form.file_field :image, class: "form-control form-control-lg", accept: "image/*" %>
+            </div>
+
+            <div class="d-grid gap-2 mt-5">
+              <%= form.submit "Update Location", class: "btn btn-primary btn-lg" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
