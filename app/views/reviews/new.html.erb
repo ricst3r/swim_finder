@@ -11,15 +11,15 @@
     <%= form.select :rating, options_for_select(1..5) %>
   </div>
 
-  <h3>Amenities</h3>
+  <%# <h3>Amenities</h3>
   <div>
     <%= form.collection_check_boxes :amenity_ids, Amenity.all, :id, :title do |b| %>
-      <div>
+      <%# <div>
         <%= b.check_box %>
-        <%= b.label %>
-      </div>
-    <% end %>
-  </div>
+        <%# <%= b.label %> 
+      <%# </div> %>
+    <%# <% end %>
+  <%# </div> %>
 
   <%= form.submit "Submit Review" %>
 <% end %>
