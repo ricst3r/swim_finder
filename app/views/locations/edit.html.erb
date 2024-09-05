@@ -1,7 +1,12 @@
 <div class="container mb-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6 my-5">
-      <div class="card shadow">
+      <div class="card shadow position-relative">
+        <%= link_to user_path(current_user.username), class: "position-absolute top-0 start-0 mt-3 ms-3 text-decoration-none" do %>
+          <span class="d-inline-flex align-items-center justify-content-center rounded-circle border border-secondary" style="width: 40px; height: 40px;">
+            <i class="bi bi-arrow-left fs-4 text-secondary fw-bold"></i>
+          </span>
+        <% end %>
         <div class="card-body p-5">
           <h2 class="card-title text-center mb-4">Edit Location</h2>
           <%= form_with(model: @location, url: location_path(@location), method: :patch, local: true, class: "location-form") do |form| %>
@@ -49,10 +54,6 @@
               <%= form.submit "Update Location", class: "btn btn-primary btn-lg" %>
             </div>
           <% end %>
-
-          <div class="text-center mt-4">
-            <%= link_to "Back", user_path(current_user.username), class: "btn btn-outline-secondary" %>
-          </div>
         </div>
       </div>
     </div>
