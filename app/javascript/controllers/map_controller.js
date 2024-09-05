@@ -59,7 +59,7 @@ export default class extends Controller {
 
   #forwardGeocoder(query) {
     if (!query) return [];
-
+    console.log(this.spotsValue)
     const features = this.spotsValue
       .filter(spot =>
         (spot.name && spot.name.toLowerCase().includes(query.toLowerCase())) ||
@@ -71,11 +71,7 @@ export default class extends Controller {
           type: 'Point',
           coordinates: [spot.lng, spot.lat]
         },
-        place_name: spot.name || 'Spot: ',
-        properties: {
-          name: spot.name || 'Spot: '
-        },
-        text: spot.name || 'Spot: ',
+        place_name: spot.name || `SwimFind Spot found`,
         place_type: ['place'],
         bbox: [spot.lng, spot.lat, spot.lng, spot.lat]
       }));
