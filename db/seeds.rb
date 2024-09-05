@@ -2,6 +2,7 @@
 
 require 'open-uri'
 require 'faker'
+require 'google_places'
 
 # Set Faker locale to English
 Faker::Config.locale = 'en'
@@ -51,21 +52,34 @@ users.each_with_index do |user, index|
 end
 
 
-# Create 10 locations (beaches and swimming spots)
-puts "Creating locations..."
-locations = [
-  "Bondi Beach", "Waikiki Beach", "Copacabana Beach", "Phi Phi Islands",
-  "Maldives", "Great Barrier Reef", "Cinque Terre", "Santorini",
-  "Bora Bora", "Palawan"
-].map do |name|
-  Location.create!(
-    name: name,
-    rating: rand(1..5),
-    address: Faker::Address.street_address,
-    # latitude: Faker::Address.latitude,
-    # longitude: Faker::Address.longitude,
-    user: users.sample
-  )
+
+# Replace your API key here
+GOOGLE_PLACES_API_KEY = ENV['GOOGLE_PLACES_API_KEY']
+
+# Initialize the client
+client = GooglePlaces::Client.new(GOOGLE_PLACES_API_KEY)
+
+puts "Creating locations using Google Places API..."
+locations = []
+
+10.times do |i|
+  keyword = ['beach', 'swimming spot'][i % 2]
+  break if locations.count >= 10
+  spots = client.spots_by_query(keyword, types: 'natural_feature', detail: true)
+  spots.each do |spot|
+    break if locations.count >= 10
+    location = Location.create!(
+      name: spot.name,
+      rating: spot.rating || rand(1..5),
+      address: spot.formatted_address,
+      latitude: spot.lat,
+      longitude: spot.lng,
+      user: users.sample
+    )
+    locations << location
+    puts "Created location: #{location.name}"
+  end
+
 end
 
 # Define Cloudinary Image URLs
