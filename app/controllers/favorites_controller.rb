@@ -11,6 +11,9 @@ class FavoritesController < ApplicationController
   end
 
   def create
+    @favorite = Favorite.new(user_id: current_user.id, location_id: params[:location_id])
+    @favorite.save
+    redirect_to favorites_path
   end
 
 end
