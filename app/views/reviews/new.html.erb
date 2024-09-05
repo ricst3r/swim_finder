@@ -14,6 +14,19 @@
     </div>
 
     <div class="mb-3">
+      <h4>Amenities</h4>
+      <div class="checkbox-group">
+        <% Amenity.all.each do |amenity| %>
+          <div class="checkbox">
+            <%= check_box_tag "review[amenity_ids][]", amenity.id, false, id: "amenity_#{amenity.id}", class: "checkbox__input" %>
+            <%= label_tag "amenity_#{amenity.id}", amenity.title, class: "checkbox__label" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="mb-3">
       <%= form.label :rating, "Rating", class: "form-label" %>
       <div class="star-rating">
         <% 5.times do |i| %>
