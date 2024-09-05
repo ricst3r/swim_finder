@@ -1,4 +1,7 @@
-<p><%= location.name %></p>
+<%= link_to location_path(location) do %>
+  <p><%= location.name %></p>
+<% end %>
+
 <span>
   <% if location.image.attached? %>
     <%= cl_image_tag location.image.key, class: "img-fluid" %>
