@@ -1,0 +1,39 @@
+.my-class {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.my-class + label {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #f0f0f0; // Lighter background for unchecked state
+  color: #6b7280; // Adjusted text color to match the screenshot
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px; // Added font size to match the screenshot
+  font-weight: 500; // Added font weight for better visibility
+}
+
+.my-class:checked + label {
+  background-color: #e0e7ff; // Lighter purple background when checked
+  color: #4f46e5; // Darker purple text color when checked
+}
+
+// Remove the focus styles as they're not visible in the screenshot
+// .my-class:focus + label {
+//   outline: 2px solid #1295B1;
+//   outline-offset: 2px;
+// }
+
+// Add hover effect
+.my-class + label:hover {
+  background-color: #e5e7eb; // Slightly darker background on hover
+}
+
+// Add active (clicked) state
+.my-class:active + label,
+.my-class:checked:active + label {
+  background-color: #c7d2fe; // Darker background when clicked
+}
