@@ -61,7 +61,7 @@ locations = [
   Location.create!(
     name: name,
     rating: rand(1..5),
-    address: Faker::Address.street_address,
+    address: name,
     # latitude: Faker::Address.latitude,
     # longitude: Faker::Address.longitude,
     user: users.sample
