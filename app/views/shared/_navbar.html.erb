@@ -1,12 +1,7 @@
 <nav class="bottom-nav">
   <div class="bottom-nav-container">
     <% if user_signed_in? %>
-      <%= link_to destroy_user_session_path, class: "nav-item", data: {turbo_method: :delete} do %>
-        <div class="icon-container">
-          <i class="fa-solid fa-door-open"></i>
-        </div>
-        <p>Log out</p>
-      <% end %>
+
       <%= link_to root_path, class: "nav-item" do %>
       <div class="icon-container">
         <i class="fa-regular fa-map"></i>
