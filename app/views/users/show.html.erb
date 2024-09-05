@@ -3,7 +3,11 @@
     <div class="row no-gutters align-items-center">
       <div class="col-4">
         <% if @user.image.attached? %>
-          <%= cl_image_tag @user.image.key, class: "profile-picture img-fluid rounded-left", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
+          <div class="d-flex justify-content-center">
+            <%= cl_image_tag @user.image.key, class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
+          </div>
+        <% else %>
+          <%= image_tag "default_avatar.png", class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
         <% end %>
       </div>
       <div class="col-8">
