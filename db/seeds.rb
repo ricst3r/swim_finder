@@ -60,49 +60,47 @@ GOOGLE_PLACES_API_KEY = ENV['GOOGLE_PLACES_API_KEY']
 client = GooglePlaces::Client.new(GOOGLE_PLACES_API_KEY)
 
 puts "Creating locations using Google Places API..."
+
 locations = []
+keywords = ['beach', 'swimming spot']
+max_attempts = 20
 
-10.times do |i|
-  keyword = ['beach', 'swimming spot'][i % 2]
+max_attempts.times do |i|
   break if locations.count >= 10
-  spots = client.spots_by_query(keyword, types: 'natural_feature', detail: true)
-  spots.each do |spot|
-    break if locations.count >= 10
-    location = Location.create!(
-      name: spot.name,
-      rating: spot.rating || rand(1..5),
-      address: spot.formatted_address,
-      latitude: spot.lat,
-      longitude: spot.lng,
-      user: users.sample
-    )
-    locations << location
-    puts "Created location: #{location.name}"
-  end
+  keyword = keywords[i % keywords.length]
+  begin
+    spots = client.spots_by_query(keyword, types: 'natural_feature', detail: true)
+    spots.each do |spot|
+      break if locations.count >= 10
+      location = Location.create!(
+        name: spot.name,
+        rating: spot.rating || rand(1..5),
+        address: spot.formatted_address,
+        latitude: spot.lat,
+        longitude: spot.lng,
+        user: users.sample
+      )
 
+      # Fetch and attach photo if available
+      if spot.photos.any?
+        photo_reference = spot.photos.first.photo_reference
+        photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo_reference}&key=#{GOOGLE_PLACES_API_KEY}"
+        location.image.attach(io: URI.open(photo_url), filename: "#{location.name.parameterize}.jpg")
+        puts "Attached photo to location: #{location.name}"
+      else
+        puts "No photo available for location: #{location.name}"
+      end
+
+      locations << location
+      puts "Created location: #{location.name}"
+    end
+  rescue => e
+    puts "Error fetching spots for '#{keyword}': #{e.message}"
+  end
 end
 
-# Define Cloudinary Image URLs
-cloudinary_urls = [
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306179/swimfinder/hr0t9uv7hyfx08bo5c9a.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306181/swimfinder/nlogrhezgmn2phak6wtw.webp",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306179/swimfinder/groirogbnswzpclymt74.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/sjj3llrxmruxy85ohzua.webp",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/nbycwgfpp630jtifg13j.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/gqwijgwpwqaz6clzdi4g.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306181/swimfinder/zwtsysndkjybwkceeejv.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/ituyeovjfcxbetwtlc7p.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306180/swimfinder/gv4mpg3iq1hbqwlh5cc8.jpg",
-  "https://res.cloudinary.com/dqdmlrr95/image/upload/v1725306181/swimfinder/hvhtk5svdhuhxq1rn3gj.webp",
-]
-
-puts "Attaching Cloudinary images to locations..."
-locations.each_with_index do |location, index|
-  cloudinary_url = cloudinary_urls[index]
-  location.image.attach(
-    io: URI.open(cloudinary_url),
-    filename: File.basename(cloudinary_url)
-  )
+if locations.empty?
+  puts "Warning: No locations were created. You may need to check your Google Places API key or internet connection."
 end
 
 # Create amenities
