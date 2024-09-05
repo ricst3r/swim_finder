@@ -39,14 +39,11 @@ body, html {
     color: #666;
   }
 }
-.mapboxgl-ctrl-attrib-inner {
+
+a.mapboxgl-ctrl-logo {
   display: none;
 }
 
-.mapboxgl-ctrl-logo {
-  display: none;
-}
-
-.mapboxgl-ctrl-icon {
+div.mapboxgl-ctrl.mapboxgl-ctrl-attrib.mapboxgl-compact {
   display: none;
 }
