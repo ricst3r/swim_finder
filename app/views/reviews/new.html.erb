@@ -5,7 +5,7 @@
     </div>
   <% end %>
   <h1 class="text-center mt-4">New Review for</h1>
-  <h2 class="text-center"><%= @location.name %></h2>
+  <h2 class="text-center"><%= link_to @location.name, location_path(@location), class: "text-decoration-none text-black" %></h2>
 
   <%= form_with(model: [@location, @review], local: true) do |form| %>
     <div class="mb-3">
@@ -30,6 +30,6 @@
       <%= form.file_field :image, class: "form-control", accept: "image/*" %>
     </div>
 
-    <%= form.submit "Submit Review", class: "btn btn-primary", style: "background-color: #1295B1;" %>
+    <%= form.submit "Submit Review", class: "btn btn-primary", style: "background-color: #1295B1;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
   <% end %>
 </div>
