@@ -29,7 +29,7 @@ export default class extends Controller {
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl,
       localGeocoder: this.#forwardGeocoder.bind(this),
-      zoom: 14,
+      zoom: 12,
       placeholder: "     Looking for swim spots...",
       marker: false
     })
@@ -54,7 +54,7 @@ export default class extends Controller {
     const bounds = new mapboxgl.LngLatBounds()
     console.log(this.spotsValue)
     this.spotsValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 0 })
   }
 
   #forwardGeocoder(query) {
