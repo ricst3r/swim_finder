@@ -1,88 +1,46 @@
-    <%= form_with(model: @location, local: true, class: "location-form") do |form| %>
-      <div class="mb-4">
-        <%= form.label :name, class: "form-label" %>
-        <%= form.text_field :name, class: "form-control", placeholder: "Enter location name" %>
+    <div class="container mb-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 my-5">
+          <div class="card shadow">
+            <div class="card-body p-5">
+              <h2 class="card-title text-center mb-4 test">Create New Location</h2>
+              <%= form_with(model: @location, url: locations_path, local: true, class: "location-form") do |form| %>
+                <div class="mb-4">
+                  <%= form.label :name, class: "form-label fw-bold" %>
+                  <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter location name" %>
+                </div>
+
+                <div class="mb-4">
+                  <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
+                  <div class="star-rating d-flex justify-content-center">
+                    <% 5.downto(1) do |i| %>
+                      <%= form.radio_button :rating, i, id: "rating#{i}", class: "visually-hidden" %>
+                      <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars" do %>
+                        <i class="bi bi-star<%= form.object.rating && form.object.rating >= i ? '-fill' : '' %> text-warning"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <%= form.label :address, class: "form-label fw-bold" %>
+                  <div data-controller="address-autocomplete"
+                       data-address-autocomplete-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <%= form.label :image, "Upload Image", class: "form-label fw-bold" %>
+                  <%= form.file_field :image, class: "form-control form-control-lg", accept: "image/*" %>
+                </div>
+
+                <div class="d-grid gap-2 mt-5">
+                  <%= form.submit "Create Location", class: "btn btn-primary btn-lg" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-<div class="mb-4">
-  <%= form.label :rating, "Rating", class: "form-label" %>
-  <div class="star-rating">
-    <% 5.downto(1) do |i| %>
-      <%= form.radio_button :rating, i, id: "rating#{i}", class: "btn-check" %>
-      <%= form.label "rating#{i}", class: "star-label", title: "#{i} stars" do %>
-        <i class="bi bi-star"></i>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-      <div class="mb-4">
-        <%= form.label :address, class: "form-label" %>
-        <%= form.text_field :address, class: "form-control", placeholder: "Enter address" %>
-      </div>
-
-      <div class="mb-4">
-        <%= form.label :description, class: "form-label" %>
-        <%= form.text_area :description, class: "form-control", rows: 4, placeholder: "Enter information about the swim spot" %>
-      </div>
-
-      <div class="mb-4">
-        <%= form.submit "Create Location", class: "btn btn-primary btn-lg w-100" %>
-      </div>
-    <% end %>
-
-    <style>
-      .location-form {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 2rem;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      }
-
-      .form-label {
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-      }
-
-      .form-control {
-        border-radius: 5px;
-      }
-
-      .star-rating {
-        display: inline-flex;
-        background-color: #fff;
-        padding: 0.5rem;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      }
-
-      .star-rating input[type="radio"] {
-        display: none;
-      }
-
-      .star-rating label {
-        cursor: pointer;
-        font-size: 28px;
-        color: #ccc;
-        transition: color 0.2s;
-        margin: 0 2px;
-      }
-
-      .star-rating label:hover,
-      .star-rating label:hover ~ label,
-      .star-rating input[type="radio"]:checked ~ label {
-        color: #ffc107;
-      }
-
-      .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        transition: background-color 0.2s;
-      }
-
-      .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-      }
-    </style>
+    </div>

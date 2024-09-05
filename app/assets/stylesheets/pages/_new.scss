@@ -1,24 +1,24 @@
-.star-rating {
-  display: inline-flex;
-  gap: 10px; // Space between stars
-  align-items: center;
+.star-rating .bi {
+  font-size: 2rem; /* Adjust this value as needed */
+}
+.mapboxgl-ctrl-geocoder input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  color: #333333;
 
-  .star-label {
-    cursor: pointer;
-    font-size: 36px; // Size of the stars
-    color: #ccc; // Default star color (unfilled)
-    transition: color 0.3s ease; // Smooth transition for color change
+  &:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+  }
 
-    // Hover effect on stars
-    &:hover,
-    &:hover ~ .star-label {
-      color: gold; // Star color on hover
-    }
-
-    // Change color when star is selected
-    .btn-check:checked + &,
-    .btn-check:checked + & ~ .star-label {
-      color: gold; // Filled star color when selected
-    }
+  &::placeholder {
+    color: #999999;
   }
 }
