@@ -3,14 +3,18 @@
     <div class="row no-gutters align-items-center">
       <div class="col-4">
         <% if @user.image.attached? %>
-          <%= cl_image_tag @user.image.key, class: "profile-picture img-fluid rounded-left", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
+          <div class="d-flex justify-content-center">
+            <%= cl_image_tag @user.image.key, class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
+          </div>
+        <% else %>
+          <%= image_tag "default_avatar.png", class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
         <% end %>
       </div>
       <div class="col-8">
         <div class="card-body">
           <h2 class="card-title mb-1"><%= @user.name %></h2>
           <p class="card-text username">@<%= @user.username %></p>
-             <%= button_to "Message", "#", method: :get, class: "btn btn-secondary" %>
+             <%= button_to "Message", "#", method: :get, class: "btn", style: "background-color: #1295B1; color: white;" %>
         </div>
       </div>
     </div>
@@ -38,7 +42,7 @@
                   </div>
                   <div class="col-8">
                     <div class="card-body p-0">
-                      <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location) %></h5>
+                      <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location), class: "text-black text-decoration-none" %></h5>
                     </div>
                   </div>
                 </div>
@@ -69,7 +73,7 @@
                   </div>
                   <div class="col-8">
                     <div class="card-body p-0">
-                      <h5 class="card-title mb-0"><%= link_to location.name, location_path(location) %></h5>
+                      <h5 class="card-title mb-0"><%= link_to location.name, location_path(location), class: "text-black text-decoration-none" %></h5>
                     </div>
                   </div>
                 </div>
