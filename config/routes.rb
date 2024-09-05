@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :locations do
     resources :reviews, only: [:new, :create]
-    resources :favorites, only: [:create]
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :favorites, only: [:index]

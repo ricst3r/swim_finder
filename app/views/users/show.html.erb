@@ -91,7 +91,9 @@
   </div>
   <% if current_user == @user %>
     <div>
-      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+      <%= button_to destroy_user_session_path, method: :delete do %>
+      <i class="fa-solid fa-door-open"></i>
+      <% end %>
     </div>
   <% end %>
   </div>
