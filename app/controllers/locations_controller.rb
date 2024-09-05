@@ -34,6 +34,12 @@ class LocationsController < ApplicationController
   def update
   end
 
+  def destroy
+    @location = Location.find(params[:id])
+    @location.destroy
+    redirect_to user_path(current_user.username), notice: 'Location was successfully deleted.'
+  end
+
   private
 
   def location_params
