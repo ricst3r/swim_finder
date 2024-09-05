@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   get 'search_locations', to: 'pages#search_locations'
 
-  resources :locations, only: [:new, :create]
+  resources :locations, only: [:new, :create,]
 end
