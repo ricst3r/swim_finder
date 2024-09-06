@@ -22,6 +22,7 @@
             <%= label_tag "amenity_#{amenity.id}", amenity.title, class: "checkbox__label" %>
           </div>
         <% end %>
+        <%= hidden_field_tag "review[amenity_ids][]", "" %>
       </div>
     </div>
 
