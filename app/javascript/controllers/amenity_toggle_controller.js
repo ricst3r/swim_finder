@@ -2,8 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   toggle(event) {
-    const label = event.currentTarget
-    label.classList.toggle('btn-primary')
-    label.classList.toggle('btn-success')
+    event.preventDefault()
+    const checkbox = event.target.previousElementSibling
+    checkbox.checked = !checkbox.checked
+    event.target.classList.toggle('active')
   }
 }

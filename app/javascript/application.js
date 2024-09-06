@@ -3,6 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
-
+// import "bootstrap-icons/font/bootstrap-icons.css"
 // Add this line to import your CSS
 // import "../assets/stylesheets/application.scss"

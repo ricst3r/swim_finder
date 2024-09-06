@@ -1,0 +1,42 @@
+<div class=“container”>
+  <% if @location.image.attached? %>
+    <div class=“text-center mb-4">
+      <%= cl_image_tag @location.image.key, class: “img-fluid rounded”, style: “max-height: 300px; object-fit: cover;” %>
+    </div>
+  <% end %>
+  <h1 class=“text-center mt-4”>New Review for</h1>
+  <h2 class=“text-center”><%= link_to @location.name, location_path(@location), class: “text-decoration-none text-black” %></h2>
+  <%= form_with(model: [@location, @review], local: true) do |form| %>
+    <div class=“mb-3">
+      <%= form.label :content, “Review”, class: “form-label” %>
+      <%= form.text_area :content, rows: 5, class: “form-control” %>
+    </div>
+    <div class=“mb-3">
+      <h4>Amenities</h4>
+      <div class=“checkbox-group”>
+        <% Amenity.all.each do |amenity| %>
+          <div class=“checkbox”>
+            <%= check_box_tag “review[amenity_ids][]“, amenity.id, false, id: “amenity_#{amenity.id}“, class: “checkbox__input” %>
+            <%= label_tag “amenity_#{amenity.id}“, amenity.title, class: “checkbox__label” %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class=“mb-3">
+      <%= form.label :rating, “Rating”, class: “form-label” %>
+      <div class=“star-rating”>
+        <% 5.times do |i| %>
+          <%= form.radio_button :rating, i+1, class: “btn-check”, id: “star-#{i+1}“, autocomplete: “off” %>
+          <%= form.label “star-#{i+1}“, class: “btn btn-outline-warning” do %>
+            <i class=“fas fa-star”></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class=“mb-3”>
+      <%= form.label :image, “Upload Photo”, class: “form-label” %>
+      <%= form.file_field :image, class: “form-control”, accept: “image/*” %>
+    </div>
+    <%= form.submit “Submit Review”, class: “btn btn-primary”, style: “background-color: #1295B1;“, data: { turbo: false }, onclick: “this.form.submit(); this.disabled=true;” %>
+  <% end %>
+</div>
