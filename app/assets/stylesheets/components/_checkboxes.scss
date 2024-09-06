@@ -1,25 +1,39 @@
-.light-blue-bg {
-  background-color: #E6F3FF;
-  color: #0056b3;
-  border: 1px solid #0056b3;
+.my-class {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.btn-check:checked + .light-blue-bg {
-  background-color: #0056b3;
-  color: white;
-}
-.amenity-label {
-  background-color: #E6F3FF !important;
-  color: #0056b3 !important;
-  border: 1px solid #0056b3 !important;
+.my-class + label {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #f0f0f0; // Lighter background for unchecked state
+  color: #6b7280; // Adjusted text color to match the screenshot
+  cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 14px; // Added font size to match the screenshot
+  font-weight: 500; // Added font weight for better visibility
 }
 
-.btn-check:checked + .amenity-label {
-  background-color: #0056b3 !important;
-  color: white !important;
+.my-class:checked + label {
+  background-color: #e0e7ff; // Lighter purple background when checked
+  color: #4f46e5; // Darker purple text color when checked
 }
 
-.btn-check:focus + .amenity-label, .amenity-label:focus {
-  box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25) !important;
+// Remove the focus styles as they're not visible in the screenshot
+// .my-class:focus + label {
+//   outline: 2px solid #1295B1;
+//   outline-offset: 2px;
+// }
+
+// Add hover effect
+.my-class + label:hover {
+  background-color: #e5e7eb; // Slightly darker background on hover
+}
+
+// Add active (clicked) state
+.my-class:active + label,
+.my-class:checked:active + label {
+  background-color: #c7d2fe; // Darker background when clicked
 }
