@@ -21,12 +21,13 @@ Favorite.destroy_all
 # Create 4 users
 puts "Creating users..."
 users = 4.times.map do |i|
+  Faker::Config.locale = 'en'  # Set locale directly before user creation
   User.create!(
     email: "user#{i+1}@example.com",
     password: "password",
     name: Faker::Name.name,
     username: Faker::Internet.username,
-    bio: Faker::Lorem.paragraph
+    bio: Faker::Quote.famous_last_words
   )
 end
 

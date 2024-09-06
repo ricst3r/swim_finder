@@ -20,6 +20,7 @@
             <%= label_tag "amenity_#{amenity.id}", amenity.title, class: "btn rounded-pill amenity-label", data: { amenity_id: amenity.id } %>
           </div>
         <% end %>
+        <%= hidden_field_tag "review[amenity_ids][]", "" %>
       </div>
     </div>
       <div class="mb-4">
