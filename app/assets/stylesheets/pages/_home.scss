@@ -85,15 +85,17 @@ div.mapboxgl-ctrl-geocoder--powered-by {
 }
 
 #explore-button {
-  margin-top: 20px;
+  margin-top: 60px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 20px;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  color: lightskyblue;
+  border: px;
+  border-color: darkblue;
+  background-color: rgb(255, 255, 255);
+  color: darkblue;
   transition: background-color 0.3s ease;
+
 }
 
 #explore-button:hover {

@@ -1,7 +1,6 @@
 <div id="welcome-popup" class="popup" data-controller="popup">
   <div class="popup-content" style="background-image: url(<%= asset_path('logo.png') %>);">
-    <h1>Welcome to Swimfind</h1>
-    <button id="explore-button">Let's explore</button>
+    <button id="explore-button"><b>Let's explore</b></button>
   </div>
 </div>
 
@@ -10,7 +9,7 @@
     data-controller="map"
     data-map-spots-value="<%= @spots.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    <div class="banner-logo" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+    <%# <div class="banner-logo" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;">
       <%= image_tag "swimfinderbannerlogo.png", alt: "Swim Finder Logo", class: "img-fluid" %>
     </div>
   </div>
