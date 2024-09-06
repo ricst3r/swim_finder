@@ -7,7 +7,9 @@ class Chat < ApplicationRecord
   end
 
   def self.between(user1_id, user2_id)
-    where("(user1_id = ? AND user2_id = ?) OR (user1_id = ? AND user2_id = ?)",
-          user1_id, user2_id, user2_id, user1_id)
+    joins(:users)
+      .where(users: { id: [user1_id, user2_id] })
+      .group('chats.id')
+      .having('COUNT(DISTINCT users.id) = 2')
   end
 end
