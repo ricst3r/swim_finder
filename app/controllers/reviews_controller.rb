@@ -13,7 +13,6 @@ def create
   @review.user = current_user
 
   if @review.save
-    # Only process amenities if they are present
     if params[:review][:amenity_ids].present?
       params[:review][:amenity_ids].each do |amenity_id|
         ReviewAmenity.create(review: @review, amenity_id: amenity_id)
