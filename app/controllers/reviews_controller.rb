@@ -11,11 +11,17 @@ def create
   @location = Location.find(params[:location_id])
   @review.location = @location
   @review.user = current_user
-  @review.save
-  review_params[:amenity_ids].each do |amenity_id|
-    ReviewAmenity.create(review: @review, amenity_id: amenity_id)
+
+  if @review.save
+    if params[:review][:amenity_ids].present?
+      params[:review][:amenity_ids].each do |amenity_id|
+        ReviewAmenity.create(review: @review, amenity_id: amenity_id)
+      end
+    end
+    redirect_to location_path(@location), notice: 'Review was successfully created.'
+  else
+    render :new
   end
-  redirect_to location_path(@location)
 end
 
 private
