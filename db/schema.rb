@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_03_091736) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_06_092745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_091736) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chats_users", id: false, force: :cascade do |t|
+    t.bigint "chat_id"
+    t.bigint "user_id"
+    t.index ["chat_id"], name: "index_chats_users_on_chat_id"
+    t.index ["user_id"], name: "index_chats_users_on_user_id"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.text "comment"
     t.bigint "user_id", null: false
@@ -68,6 +80,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_091736) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.index ["user_id"], name: "index_locations_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "review_amenities", force: :cascade do |t|
@@ -110,6 +132,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_091736) do
   add_foreign_key "favorites", "locations"
   add_foreign_key "favorites", "users"
   add_foreign_key "locations", "users"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users"
   add_foreign_key "review_amenities", "amenities"
   add_foreign_key "review_amenities", "reviews"
   add_foreign_key "reviews", "locations"

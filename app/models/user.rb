@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :locations
   has_many :favorites
+  has_and_belongs_to_many :chats
+  has_many :messages
 
   validates :username, presence: true, uniqueness: true
 end

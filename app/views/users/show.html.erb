@@ -14,7 +14,14 @@
         <div class="card-body">
           <h2 class="card-title mb-1"><%= @user.name %></h2>
           <p class="card-text username">@<%= @user.username %></p>
-             <%= button_to "Message", "#", method: :get, class: "btn", style: "background-color: #1295B1; color: white;" %>
+             <% if current_user != @user %>
+               <% chat = Chat.between(current_user.id, @user.id).first_or_create rescue nil %>
+               <% if chat %>
+                 <%= link_to "Message", chat_path(chat), class: "btn", style: "background-color: #1295B1; color: white;" %>
+               <% else %>
+                 <p>Unable to create or find chat.</p>
+               <% end %>
+             <% end %>
 
         </div>
       </div>

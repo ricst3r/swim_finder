@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'search_locations', to: 'pages#search_locations'
 
   resources :locations, only: [:new, :create,]
+
+  resources :chats, only: [:show, :create]
 end
