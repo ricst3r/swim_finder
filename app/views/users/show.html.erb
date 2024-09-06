@@ -62,8 +62,8 @@
       <div class="user-swims card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h3>My Swim Locations</h3>
-          <%= link_to new_location_path, class: "btn btn-sm", style: "background-color: #1295B1; color: white;" do %>
-            <i class="fas fa-plus"></i> Add Location
+          <%= link_to new_location_path, class: "btn btn-sm rounded-circle d-flex justify-content-center align-items-center", style: "background-color: #1295B1; color: white; width: 40px; height: 40px;" do %>
+            <i class="fas fa-plus"></i>
           <% end %>
         </div>
         <% if @user.locations.any? %>
@@ -72,7 +72,7 @@
             <div class="col-md-4 mb-3">
               <div class="swim-item card bg-white shadow-sm rounded p-3 position-relative" style="border-radius: 15px;">
                 <%= link_to edit_location_path(location), class: "position-absolute top-0 end-0 m-2", title: "Edit location" do %>
-                  <i class="fas fa-edit text-muted" style="font-size: 0.8rem;"></i>
+                  <i class="fas fa-edit text-primary" style="font-size: 0.8rem;"></i>
                 <% end %>
                 <div class="row no-gutters align-items-center">
                   <div class="col-4">
