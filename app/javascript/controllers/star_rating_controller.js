@@ -1,31 +1,36 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input", "star"]
+  static targets = ["input", "star", "icon"]
 
   connect() {
     this.updateStars()
   }
 
-  updateStars() {
-    const selectedRating = this.inputTargets.find(input => input.checked)?.value || 0
-    this.updateStarDisplay(selectedRating)
-  }
-
-  highlight({ target }) {
-    const rating = target.previousElementSibling.value
-    this.updateStarDisplay(rating)
+  highlight(event) {
+    const rating = parseInt(event.currentTarget.getAttribute("for").replace("review_rating", ""))
+    this.iconTargets.forEach((icon, index) => {
+      icon.classList.toggle("bi-star-fill", index < rating)
+      icon.classList.toggle("bi-star", index >= rating)
+    })
   }
 
   reset() {
     this.updateStars()
   }
 
-  updateStarDisplay(rating) {
-    this.starTargets.forEach((star, index) => {
-      const starValue = index + 1
-      star.querySelector('i').classList.toggle('bi-star-fill', starValue <= rating)
-      star.querySelector('i').classList.toggle('bi-star', starValue > rating)
+  setRating(event) {
+    const rating = parseInt(event.currentTarget.getAttribute("for").replace("review_rating", ""))
+    this.inputTargets.find(input => input.value == rating).checked = true
+    this.updateStars()
+  }
+
+  updateStars() {
+    const checkedInput = this.inputTargets.find(input => input.checked)
+    const rating = checkedInput ? parseInt(checkedInput.value) : 0
+    this.iconTargets.forEach((icon, index) => {
+      icon.classList.toggle("bi-star-fill", index < rating)
+      icon.classList.toggle("bi-star", index >= rating)
     })
   }
 }

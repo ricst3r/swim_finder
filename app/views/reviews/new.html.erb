@@ -13,26 +13,25 @@
       <%= form.text_area :content, rows: 5, class: "form-control" %>
     </div>
 
-    <div class="mb-3">
+     <div class="mb-3">
       <h4>Amenities</h4>
-      <div class="checkbox-group">
+      <div class="d-flex flex-wrap gap-2" data-controller="amenity-toggle">
         <% Amenity.all.each do |amenity| %>
-          <div class="checkbox">
-            <%= check_box_tag "review[amenity_ids][]", amenity.id, false, id: "amenity_#{amenity.id}", class: "checkbox__input" %>
-            <%= label_tag "amenity_#{amenity.id}", amenity.title, class: "checkbox__label" %>
+          <div>
+            <%= check_box_tag "review[amenity_ids][]", amenity.id, false, id: "amenity_#{amenity.id}", class: "btn-check" %>
+            <%= label_tag "amenity_#{amenity.id}", amenity.title, class: "btn rounded-pill amenity-btn custom-checkbox amenity-label", data: { action: "click->amenity-toggle#toggle" } %>
           </div>
         <% end %>
       </div>
     </div>
 
-
-    <div class="mb-3">
-      <%= form.label :rating, "Rating", class: "form-label" %>
-      <div class="star-rating">
-        <% 5.times do |i| %>
-          <%= form.radio_button :rating, i+1, class: "btn-check", id: "star-#{i+1}", autocomplete: "off" %>
-          <%= form.label "star-#{i+1}", class: "btn btn-outline-warning" do %>
-            <i class="fas fa-star"></i>
+    <div class="mb-4">
+      <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
+      <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
+        <% 1.upto(5) do |i| %>
+          <%= form.radio_button :rating, i, id: "review_rating#{i}", class: "visually-hidden", data: { action: "change->star-rating#updateStars", "star-rating-target": "input" } %>
+          <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
+            <i class="bi bi-star text-warning"></i>
           <% end %>
         <% end %>
       </div>
