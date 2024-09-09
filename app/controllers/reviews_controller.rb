@@ -13,11 +13,12 @@ def create
   @review.user = current_user
 
   if @review.save
-    if params[:review][:amenity_ids].present?
-      params[:review][:amenity_ids].each do |amenity_id|
-        ReviewAmenity.create(review: @review, amenity_id: amenity_id)
-      end
-    end
+    # Remove this block
+    # if params[:review][:amenity_ids].present?
+    #   params[:review][:amenity_ids].each do |amenity_id|
+    #     ReviewAmenity.create(review: @review, amenity_id: amenity_id)
+    #   end
+    # end
     redirect_to location_path(@location), notice: 'Review was successfully created.'
   else
     render :new
