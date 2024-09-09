@@ -119,47 +119,47 @@ end
 puts "Creating amenities..."
 amenities = [
   " 🅿️ Parking", "🏥 Lifeguard", "🚻 Restrooms", "🚿 Showers", "🍴 Food Vendors", "🏄‍♂️ Water Sports Allowed",
-  "🏖️ Picnic Areas", "👨‍👩‍👧‍👦 Family Friendly", "🧘‍♂️ Relaxing" 
+  "🏖️ Picnic Areas", "👨‍👩‍👧‍👦 Family Friendly", "🧘‍♂️ Relaxing"
 ].map { |title| Amenity.create!(title: title) }
 
-# Create 8 reviews (2 for each user) and associate amenities
-puts "Creating reviews and associating amenities..."
-# Ensure each location has at least one review
-locations.each do |location|
-  user = users.sample
-  Review.create!(
-    content: Faker::Lorem.paragraph,
-    rating: rand(1..5),
-    user: user,
-    location: location
-  )
-end
+# Create an array of 20 different Location Reviews
+location_reviews = [
+  "Beautiful beach with crystal clear water!",
+  "Secluded spot, perfect for relaxation.",
+  "Great waves for surfing, but be careful of strong currents.",
+  "Stunning views, but limited facilities nearby.",
+  "Family-friendly beach with calm waters.",
+  "Hidden gem! Not too crowded and very clean.",
+  "Amazing snorkeling spot with diverse marine life.",
+  "Picturesque location, ideal for photography enthusiasts.",
+  "Peaceful atmosphere, great for meditation and yoga.",
+  "Perfect for long walks along the shoreline.",
+  "Vibrant beach scene with lots of activities.",
+  "Breathtaking sunset views from this spot.",
+  "Excellent spot for kayaking and paddleboarding.",
+  "Unique black sand beach, a must-visit!",
+  "Quiet and serene, great for nature lovers.",
+  "Rocky coastline with interesting tide pools to explore.",
+  "Popular local hangout with a fun atmosphere.",
+  "Impressive cliffs and rock formations nearby.",
+  "Clear waters perfect for swimming and diving.",
+  "Charming beach town with friendly locals."
+]
 
-# Ensure each user has written at least one review
-users.each do |user|
-  next if user.reviews.any?
-  Review.create!(
-    content: Faker::Lorem.paragraph,
-    rating: rand(1..5),
-    user: user,
-    location: locations.sample
-  )
-end
-
-# Add additional random reviews
+# Modify the review creation loop
 10.times do
   review = Review.create!(
-    content: Faker::Lorem.paragraph,
+    content: location_reviews.sample,
     rating: rand(1..5),
     user: users.sample,
     location: locations.sample
   )
 
-    # Associate 2-4 random amenities with each review
-    amenities.sample(rand(2..4)).each do |amenity|
-      ReviewAmenity.create!(review: review, amenity: amenity)
-    end
+  # Associate 2-4 random amenities with each review
+  amenities.sample(rand(2..4)).each do |amenity|
+    ReviewAmenity.create!(review: review, amenity: amenity)
   end
+end
 
 puts "Seed data created successfully!"
 
