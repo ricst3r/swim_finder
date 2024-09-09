@@ -149,11 +149,15 @@ location_reviews = [
 # Modify the review creation loop
 puts "Creating reviews..."
 locations.each do |location|
-  3.times do
+  # Shuffle the users array to get a random order
+  shuffled_users = users.shuffle
+
+  # Create 4 reviews for each location, one from each user
+  4.times do |i|
     review = Review.create!(
       content: location_reviews.sample,
       rating: rand(1..5),
-      user: users.sample,
+      user: shuffled_users[i],
       location: location
     )
 
