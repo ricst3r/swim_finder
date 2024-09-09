@@ -21,5 +21,11 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:new, :create,]
 
-  resources :chats, only: [:show, :create]
+  resources :users do
+    resources :chats, only: [:create]
+  end
+
+  resources :chats, only: [:show, :index] do
+    resources :messages, only: [:create]
+  end
 end

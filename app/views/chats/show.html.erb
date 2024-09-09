@@ -1,9 +1,19 @@
-<h1>Chat Room</h1>
+
+<div class="container">
+<h1>Now chatting with <%= @user.name %></h1>
 
 <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
 <div id="messages">
-  <%= render @chat.messages %>
+  <% @chat.messages.each do |message| %>
+    <%= render "messages/message", message: message, user: current_user %>
+  <% end %>
 </div>
 
-
-
+<%= simple_form_for [@chat, @message],
+  html: {class: "d-flex",
+         data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f|
+%>
+  <%= f.input :content %>
+  <%= f.submit "Send" %>
+<% end %>
+</div>
