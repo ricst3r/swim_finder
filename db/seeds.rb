@@ -18,6 +18,7 @@ Location.destroy_all
 User.destroy_all
 Favorite.destroy_all
 
+
 # Create 4 users
 puts "Creating users..."
 users = 4.times.map do |i|

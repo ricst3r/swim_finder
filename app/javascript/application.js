@@ -8,26 +8,26 @@ import "bootstrap"
 // import "../assets/stylesheets/application.scss"
 
 // Add these lines for Action Cable
-import { createConsumer } from "@rails/actioncable"
+// import { createConsumer } from "@rails/actioncable"
 
-// Create the Action Cable consumer
-const consumer = createConsumer()
+// // Create the Action Cable consumer
+// const consumer = createConsumer()
 
-// Subscribe to the ChatChannel
-consumer.subscriptions.create("ChatChannel", {
-  connected() {
-    console.log("Connected to ChatChannel")
-  },
+// // Subscribe to the ChatChannel
+// consumer.subscriptions.create("ChatChannel", {
+//   connected() {
+//     console.log("Connected to ChatChannel")
+//   },
 
-  disconnected() {
-    console.log("Disconnected from ChatChannel")
-  },
+//   disconnected() {
+//     console.log("Disconnected from ChatChannel")
+//   },
 
-  received(data) {
-    // Handle received messages
-    const messagesContainer = document.querySelector("#messages")
-    if (messagesContainer) {
-      messagesContainer.insertAdjacentHTML('beforeend', data.message)
-    }
-  }
-})
+//   received(data) {
+//     // Handle received messages
+//     const messagesContainer = document.querySelector("#messages")
+//     if (messagesContainer) {
+//       messagesContainer.insertAdjacentHTML('beforeend', data.message)
+//     }
+//   }
+// })
