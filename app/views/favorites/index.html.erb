@@ -1,9 +1,9 @@
-<div class="card bg-white p-5 shadow-sm rounded mb-4">
+<div class="card bg-white p-5 shadow-sm rounded">
   <h1 class="mb-0 text-center">My Favorites</h1>
 </div>
 
 <% if @favorites.any? %>
-  <div class="favorites-list p-3">
+  <div class="favorites-list p-3 favorite-background" >
     <% @favorites.each do |favorite| %>
       <div class="favorite-item card bg-white rounded shadow-sm mb-4 p-3">
         <div class="row no-gutters align-items-center">
