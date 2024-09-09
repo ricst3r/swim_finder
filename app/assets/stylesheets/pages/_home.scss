@@ -61,3 +61,10 @@ div.mapboxgl-ctrl-geocoder--powered-by {
 .fav i{
   margin: 5px;
 }
+
+.marker {
+  display: block;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
