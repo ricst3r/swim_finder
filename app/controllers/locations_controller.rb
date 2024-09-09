@@ -16,11 +16,16 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    # Ensure the location is associated with the current user if needed
     @location.user = current_user if user_signed_in?
 
     if @location.save
-      # Redirect or render as appropriate
+      # Broadcast the new location to all subscribers
+      # Turbo::StreamsChannel.broadcast_append_to(
+      #   "locations",
+      #   target: "locations",
+      #   partial: "locations/location",
+      #   locals: { location: @location }
+      # )
       redirect_to user_path(current_user.username), notice: 'Location created successfully.'
     else
       render :new
