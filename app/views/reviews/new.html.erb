@@ -1,7 +1,7 @@
 <div class="container">
   <% if @location.image.attached? %>
     <div class="text-center mb-4">
-      <%= cl_image_tag @location.image.key, class: "img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
+      <%= cl_image_tag @location.image.key, class: "img-head img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
     </div>
   <% end %>
   <h1 class="text-center mt-4">New Review for</h1>

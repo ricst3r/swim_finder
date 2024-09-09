@@ -50,6 +50,14 @@
   height: 40px; /* Adjust as needed */
 }
 
+
 .content-wrapper {
   margin-bottom: 3rem;
 }
+
+.swimfinder-icon {
+  width: 300px;  /* oder die gewünschte Größe */
+  height: auto;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}
+
