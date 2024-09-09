@@ -1,0 +1,47 @@
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: lightskyblue;
+  padding: 40px;
+  border-radius: 50%;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#explore-button {
+  margin-top: 60px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  border: px;
+  border-color: darkblue;
+  background-color: rgb(255, 255, 255);
+  color: darkblue;
+  transition: background-color 0.3s ease;
+
+}
+
+#explore-button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
