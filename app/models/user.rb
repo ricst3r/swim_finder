@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :locations
   has_many :favorites
-  has_many :messages
-  has_many :chat_users
+  has_many :messages, dependent: :destroy
+  has_many :chat_users, dependent: :destroy
   has_many :chats, through: :chat_users
 
   validates :username, presence: true, uniqueness: true
