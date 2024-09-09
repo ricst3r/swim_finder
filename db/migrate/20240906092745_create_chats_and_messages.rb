@@ -4,7 +4,7 @@ class CreateChatsAndMessages < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    create_table :chats_users, id: false do |t|
+    create_table :chat_users, id: false do |t|
       t.belongs_to :chat
       t.belongs_to :user
     end
