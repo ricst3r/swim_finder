@@ -147,17 +147,20 @@ location_reviews = [
 ]
 
 # Modify the review creation loop
-10.times do
-  review = Review.create!(
-    content: location_reviews.sample,
-    rating: rand(1..5),
-    user: users.sample,
-    location: locations.sample
-  )
+puts "Creating reviews..."
+locations.each do |location|
+  3.times do
+    review = Review.create!(
+      content: location_reviews.sample,
+      rating: rand(1..5),
+      user: users.sample,
+      location: location
+    )
 
-  # Associate 2-4 random amenities with each review
-  amenities.sample(rand(2..4)).each do |amenity|
-    ReviewAmenity.create!(review: review, amenity: amenity)
+    # Associate 2-4 random amenities with each review
+    amenities.sample(rand(2..4)).each do |amenity|
+      ReviewAmenity.create!(review: review, amenity: amenity)
+    end
   end
 end
 
