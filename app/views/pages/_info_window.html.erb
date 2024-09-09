@@ -1,7 +1,18 @@
-<%= link_to location_path(location) do %>
-  <p><%= location.name %></p>
-<% end %>
+<div class="d-flex justifiy-content-between fav">
+  <%= link_to location_path(location) do %>
+    <p><%= location.name %></p>
+  <% end %>
 
+  <span>
+    <%= form_for [location, Favorite.new], url: location_favorites_path(location), method: :post do |f| %>
+      <div class="d-flex ">
+        <%= f.button type: 'submit', class: "btn p-0", style: "background-color: #1295B1;" do %>
+          <i class="fa-solid fa-heart" style="color: white;"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </span>
+</div>
 
 <span>
   <% if location.image.attached? %>

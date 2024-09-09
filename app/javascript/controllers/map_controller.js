@@ -38,14 +38,23 @@ export default class extends Controller {
   }
 
   #addMarkersToMap() {
-    console.log(this.spotsValue)
     this.spotsValue.forEach((spot) => {
       const popup = new mapboxgl.Popup().setHTML(spot.info_window)
 
-      // Attach popup to the marker directly
-      new mapboxgl.Marker()
+      // Create a DOM element for each marker
+      const el = document.createElement('div');
+      el.className = 'marker';
+      el.style.backgroundImage = "url('/assets/logo_round.png')";
+      el.style.width = '30px';  // Adjust size as needed
+      el.style.height = '30px'; // Adjust size as needed
+      el.style.backgroundSize = 'contain';
+      el.style.backgroundRepeat = 'no-repeat';
+      el.style.backgroundPosition = 'center';
+
+      // Create and add the custom marker to the map
+      new mapboxgl.Marker(el)
         .setLngLat([spot.lng, spot.lat])
-        .setPopup(popup) // Links the popup to the marker
+        .setPopup(popup)
         .addTo(this.map)
     })
   }
