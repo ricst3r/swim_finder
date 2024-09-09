@@ -1,11 +1,16 @@
 
 <div class="container">
-<h1>Now chatting with <%= @user.name %></h1>
+<div class="text-center">
+  <h1 class="mb-3">Now chatting with</h1>
+  <h2><%= @user.name %></h2>
+</div>
 
 <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
-<div id="messages">
+<div id="messages" class="d-flex flex-column">
   <% @chat.messages.each do |message| %>
-    <%= render "messages/message", message: message, user: current_user %>
+    <div class="<%= message.user == current_user ? 'align-self-end text-end' : 'align-self-start text-start' %>">
+      <%= render "messages/message", message: message, user: current_user %>
+    </div>
   <% end %>
 </div>
 
@@ -14,6 +19,6 @@
          data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f|
 %>
   <%= f.input :content %>
-  <%= f.submit "Send" %>
+  <%= f.submit "Send", class: "btn btn-primary btn-sm h-75" %>
 <% end %>
 </div>

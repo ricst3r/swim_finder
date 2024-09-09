@@ -4,13 +4,17 @@
     <ul class="list-unstyled">
       <% @chats.each do |chat| %>
         <li class="mb-3">
-          <%= link_to chat_path(chat), class: "btn btn-light w-100 text-start" do %>
+          <%= link_to chat_path(chat), class: "btn btn-light w-100 text-start d-flex align-items-center" do %>
             <% other_user = chat.their_user(current_user) %>
-            <strong><%= other_user.username || other_user.email %></strong>
-            <small class="text-muted float-end">
-              <%= chat.messages.last ? time_ago_in_words(chat.messages.last.created_at) + " ago" : "No messages yet" %>
-            </small>
+            <%= image_tag other_user.image.attached? ? other_user.image : 'default_avatar.png', class: "rounded-circle me-2", style: "width: 40px; height: 40px; object-fit: cover;" %>
+            <div class="flex-grow-1">
+              <strong><%= other_user.name || other_user.email %></strong>
+              <small class="text-muted d-block">
+                <%= chat.messages.last ? time_ago_in_words(chat.messages.last.created_at) + " ago" : "No messages yet" %>
+              </small>
+            </div>
           <% end %>
+        </li>
         </li>
       <% end %>
     </ul>
