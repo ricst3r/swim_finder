@@ -8,6 +8,15 @@
       </div>
       <p>Map</p>
       <% end %>
+      <%= link_to chats_path, class: "nav-item" do %>
+      <div class="icon-container">
+        <i class="fa-solid fa-comment"></i>
+      </div>
+      <p>Chats</p>
+      <% end %>
+      <div class="icon-container">
+        <%= image_tag 'swimfinder.png', alt: 'Swimfinder', class: 'swimfinder-icon' %>
+      </div>
       <%= link_to favorites_path, class: "nav-item" do %>
       <div class="icon-container">
         <i class="fa-solid fa-heart-circle-check"></i>
