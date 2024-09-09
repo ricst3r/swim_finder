@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Your Chats</h1>
+  <% if @chats.any? %>
+    <ul class="list-unstyled">
+      <% @chats.each do |chat| %>
+        <li class="mb-3">
+          <%= link_to chat_path(chat), class: "btn btn-light w-100 text-start" do %>
+            <% other_user = chat.their_user(current_user) %>
+            <strong><%= other_user.username || other_user.email %></strong>
+            <small class="text-muted float-end">
+              <%= chat.messages.last ? time_ago_in_words(chat.messages.last.created_at) + " ago" : "No messages yet" %>
+            </small>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>You don't have any chats yet.</p>
+  <% end %>
+
+</div>
