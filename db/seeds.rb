@@ -118,8 +118,8 @@ end
 # Create amenities
 puts "Creating amenities..."
 amenities = [
-  "Parking", "Lifeguard", "Restrooms", "Showers", "Food Vendors", "Water Sports Allowed",
-  "Picnic Areas", "Family Friendly", "Relaxing"
+  " 🅿️ Parking", "🏥 Lifeguard", "🚻 Restrooms", "🚿 Showers", "🍴 Food Vendors", "🏄‍♂️ Water Sports Allowed",
+  "🏖️ Picnic Areas", "👨‍👩‍👧‍👦 Family Friendly", "🧘‍♂️ Relaxing" 
 ].map { |title| Amenity.create!(title: title) }
 
 # Create 8 reviews (2 for each user) and associate amenities
