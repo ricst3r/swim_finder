@@ -17,6 +17,9 @@ class PagesController < ApplicationController
       }
     end
   end
+  def entry
+    
+  end
 
   def search_locations
     query = params[:query]

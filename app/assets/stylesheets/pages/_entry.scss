@@ -1,0 +1,123 @@
+.centered-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.swim-logo-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+  background-color: #your-primary-color;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.swim-logo-button:hover {
+  background-color: #your-hover-color;
+}
+
+.swim-logo {
+  width: 1000px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.centered-button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.swim-logo-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-default {
+  min-width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50%;
+  background: #e0e0e0;
+  box-shadow: inset  27px  27px 54px #bebebe,
+              inset -27px -27px 54px #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 2s ease-in-out;
+}
+
+.card-style {
+  min-width: 400px;
+  height: 400px;
+  border: none;
+  border-radius: 50%;
+  background: #e0e0e0;
+  box-shadow: inset 00px 00px 00px #bebebe,
+              inset 00px 00px 00px #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-transition {
+  transition: none;
+}
+
+.button-default {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: inset 00px 00px 00px #bebebe,
+              inset 00px 00px 00px #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.button-default.animate {
+  animation: drop 1s ease 0.2s;
+}
+
+@keyframes drop {
+0%  {
+    box-shadow: inset 00px 00px 00px #bebebe,
+              inset 00px 00px 00px #ffffff;
+  }
+
+50% { box-shadow: inset  27px  27px 54px #bebebe,
+              inset -27px -27px 54px #ffffff;
+      opacity: 0;
+  }
+
+100%{ box-shadow: inset 00px 00px 00px #bebebe,
+              inset 00px 00px 00px #ffffff;
+  }
+}
+
+.button-style {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  box-shadow:  30px  30px 76px #bebebe,
+              -30px -30px 76px #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
