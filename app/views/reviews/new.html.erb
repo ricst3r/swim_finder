@@ -24,16 +24,16 @@
       </div>
     </div>
       <div class="mb-4">
-                  <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
-                  <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
-                    <% 1.upto(5) do |i| %>
-                      <%= form.radio_button :rating, i, id: "location_rating#{i}", class: "visually-hidden", data: { action: "change->star-rating#updateStars", "star-rating-target": "input" } %>
-                      <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
-                        <i class="bi bi-star text-warning"></i>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
+          <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
+          <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
+            <% 1.upto(5) do |i| %>
+              <%= form.radio_button :rating, i, id: "review_rating#{i}", class: "visually-hidden", data: { action: "change->star-rating#updateStars", "star-rating-target": "input" } %>
+              <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
+                <i class="bi bi-star text-warning"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
     <div class="mb-3">
       <%= form.label :image, "Upload Photo", class: "form-label" %>
       <%= form.file_field :image, class: "form-control", accept: "image/*" %>
@@ -41,30 +41,3 @@
     <%= form.submit "Submit Review", class: "btn btn-primary", style: "background-color: #1295B1;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
   <% end %>
 </div>
-
-<%= javascript_tag do %>
-  document.addEventListener('DOMContentLoaded', function() {
-    const amenityLabels = document.querySelectorAll('.amenity-label');
-    amenityLabels.forEach(label => {
-      label.addEventListener('click', function() {
-        const checkbox = document.getElementById('amenity_' + this.dataset.amenityId);
-        checkbox.checked = !checkbox.checked;
-        this.classList.toggle('active');
-      });
-    });
-  });
-<% end %>
-
-<style>
-  .amenity-label {
-    background-color: #E6F3FF;
-    color: #0056b3;
-    border: 1px solid #0056b3;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .amenity-label.active {
-    background-color: #0056b3;
-    color: #E6F3FF;
-  }
-</style>
