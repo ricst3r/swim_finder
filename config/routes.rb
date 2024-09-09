@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
   end
 
-  resources :favorites, only: [:index]
+  resources :favorites, only: [:index, :destroy]
 
   get 'users/:username', to: 'users#show', as: :user, constraints: { username: /[^\/]+/ }
 
