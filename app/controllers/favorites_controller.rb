@@ -11,9 +11,15 @@ class FavoritesController < ApplicationController
   end
 
   def create
+    puts "Create action called with params: #{params.inspect}"
     @favorite = Favorite.new(user_id: current_user.id, location_id: params[:location_id])
-    @favorite.save
-    redirect_to favorites_path
+    if @favorite.save
+      puts "Favorite saved successfully"
+      redirect_to favorites_path
+    else
+      puts "Failed to save favorite: #{@favorite.errors.full_messages}"
+      redirect_to root_path, alert: "Failed to add favorite"
+    end
   end
 
   def destroy
