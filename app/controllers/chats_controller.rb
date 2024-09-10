@@ -25,5 +25,10 @@ class ChatsController < ApplicationController
     @chats = current_user.chats.order(created_at: :desc)
   end
 
+  def destroy
+    @chat = Chat.find(params[:id])
+    @chat.destroy
+    redirect_to chats_path
+  end
 
 end
