@@ -10,17 +10,18 @@
                   <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter location name" %>
                 </div>
 
-              <div class="mb-4">
-      <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
-      <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
-        <% 1.upto(5) do |i| %>
-          <%= form.radio_button :rating, i, id: "location_rating#{i}", class: "visually-hidden", data: { action: "change->star-rating#updateStars", "star-rating-target": "input" } %>
-          <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
-            <i class="bi bi-star text-warning"></i>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+
+             <div class="mb-4">
+          <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
+          <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
+            <% 1.upto(5) do |i| %>
+              <%= form.radio_button :rating, i, id: "location_rating#{i}", class: "visually-hidden", data: { action: "change->star-rating#updateStars", "star-rating-target": "input" } %>
+              <%= form.label "rating#{i}", class: "mx-1", title: "#{i} stars", data: { action: "mouseenter->star-rating#highlight mouseleave->star-rating#reset", "star-rating-target": "star" } do %>
+                <i class="bi bi-star text-warning"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
 
                 <div class="mb-4">
                   <%= form.label :address, class: "form-label fw-bold" %>
