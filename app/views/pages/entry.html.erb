@@ -4,11 +4,11 @@
   </div>
 </div> %>
 
-<div class="centered-button-container card-default " data-controller="button-animation">
+<%# <div class="centered-button-container card-default " data-controller="button-animation">
   <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
-    <%= image_tag 'swimlogo.png', alt: 'Swim Logo', class: 'swim-logo' %>
-  <% end %>
-</div>
+<%#     <%= image_tag 'swimlogo.png', alt: 'Swim Logo', class: 'swim-logo' %>
+  <%# <% end %>
+<%# </div>
 
 <div id='surface'></div>
 <div id='caustics'></div>
@@ -24,4 +24,4 @@
     <feTurbulence type="turbulence" baseFrequency=".05" numOctaves="1" seed="3" stitchTiles='stitch' />
     <feDisplacementMap in="SourceGraphic" scale="10" />
   </filter>
-</svg>
+</svg>  %>
