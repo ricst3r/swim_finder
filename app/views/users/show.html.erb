@@ -28,19 +28,17 @@
     </div>
   </div>
 
-  <div class="profile-info card bg-white shadow-sm rounded p-3 mb-3 favorite-background">
-    <div class="about-me card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
-      <h3>About Me</h3>
+<h3 class="text-center text-white mt-3">About Me</h3>
+    <div class="about-me card bg-white shadow-sm rounded p-3 mb-3 mt-3" style="border-radius: 20px; margin-left: 15px; margin-right: 15px;">
       <p><%= @user.bio %></p>
     </div>
     <% if current_user != @user %>
-      <div class="favorites card bg-white shadow-sm rounded p-3 mb-3" style="border-radius: 20px;">
-        <h3>Favourites</h3>
+        <h3 class="text-center text-white">Favourites</h3>
         <% if @user.favorites.any? %>
           <div class="row">
             <% @user.favorites.each do |favorite| %>
               <div class="col-md-4 mb-3">
-                <div class="favorite-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px;">
+                <div class="favorite-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px; margin-left: 10px; margin-right: 10px;">
                   <div class="row no-gutters align-items-center">
                     <div class="col-4">
                       <% if favorite.location.image.attached? %>
@@ -62,12 +60,11 @@
         <% else %>
           <p>No favorites yet.</p>
         <% end %>
-      </div>
     <% end %>
 
     <% if current_user == @user %>
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h3>My Swim Locations</h3>
+          <h3 class="text-center text-white mx-auto" style="max-width: 300px;">My Swim Locations</h3>
           <%= link_to new_location_path, class: "btn btn-sm rounded-circle d-flex justify-content-center align-items-center", style: "background-color: #1295B1; color: white; width: 40px; height: 40px;" do %>
             <i class="fas fa-plus"></i>
           <% end %>
@@ -84,7 +81,7 @@
                   <div class="col-4">
                     <% if location.image.attached? %>
                       <%= link_to location_path(location) do %>
-                        <%= cl_image_tag location.image.key, class: "swim-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                        <%= cl_image_tag location.image.key, class: "swim-image img-fluid rounded-left", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
                       <% end %>
                     <% end %>
                   </div>
@@ -109,7 +106,7 @@
       </div>
     <% end %>
 
-  </div>
+
 
 
   </div>
