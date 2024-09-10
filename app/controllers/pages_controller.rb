@@ -6,19 +6,27 @@ class PagesController < ApplicationController
       if @locations.any?
         @center = [@locations.first.longitude, @locations.first.latitude]
       end
+      @spots = @locations.geocoded.map do |location|
+        {
+          lat: location.latitude,
+          lng: location.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { location: location })
+        }
+      end
     else
       @locations = Location.all
-    end
-    @spots = @locations.geocoded.map do |location|
-      {
-        lat: location.latitude,
-        lng: location.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { location: location })
-      }
+      @spots = @locations.geocoded.map do |location|
+        {
+          lat: location.latitude,
+          lng: location.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { location: location })
+        }
+      end
     end
   end
+
   def entry
-    
+
   end
 
   def search_locations

@@ -1,0 +1,6 @@
+<div class="location" data-lat="<%= location.latitude %>" data-lng="<%= location.longitude %>" data-marker="false">
+  <h3><%= location.name %></h3>
+  <p>Rating: <%= location.rating %></p>
+  <p>Address: <%= location.address %></p>
+  <%= image_tag location.image if location.image.attached? %>
+</div>

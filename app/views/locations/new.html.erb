@@ -26,6 +26,7 @@
                   <%= form.label :address, class: "form-label fw-bold" %>
                   <div data-controller="address-autocomplete"
                        data-address-autocomplete-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                       <%= form.text_field :address, data: { address_autocomplete_target: "address" }, class: "visually-hidden" %>
                   </div>
                 </div>
 
