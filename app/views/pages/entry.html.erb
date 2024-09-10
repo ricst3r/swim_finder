@@ -2,12 +2,12 @@
 <div class="centered-container">
   <div class="centered-button-container">
     <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
-      <%= image_tag 'swimfinder.png', alt: 'Swim Logo', class: 'swim-logo' %>
+      <%= image_tag 'Llogoja.png', alt: 'Swim Logo', class: 'swim-logo centered-logo' %>
     <% end %>
   </div>
   <div class="wavy-text-container">
       <% "Click here to start".each_char.with_index do |char, index| %>
-        <span style="--i: <%= index %>"><%= char %></span>
+        <span style="--i: <%= index %>; font-family: 'Arial', sans-serif; font-weight: bold; font-size: 18px;"><%= char %></span>
       <% end %>
     </div>
 </div>
