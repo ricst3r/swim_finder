@@ -25,7 +25,7 @@
 .swim-logo {
   width: 200vw;
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: -357px;
   filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
 }
 .centered-button-container {
@@ -43,4 +43,69 @@
 .swim-logo-button {
   position: relative;
   overflow: hidden;
+}
+.centered-button-container {
+  position: absolute;
+  top: 30%; /* Adjust this value to move the button higher or lower */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.wavy-text {
+  display: inline-block;
+}
+.wavy-text span {
+  display: inline-block;
+  animation: wave 2s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.swim-logo-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wavy-text-container {
+  margin-top: 15px; /* Adjust this value to move the text lower */
+}
+.wavy-text-container span {
+  display: inline-block;
+  font-size: 1.2em; /* Increase font size */
+  font-weight: bold; /* Make text bold */
+  color: #ffffff; /* Adjust color as needed */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for emphasis */
+  animation: wave 2s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px); /* Increase wave height */
+  }
+}
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Changed from center to flex-start */
+  height: 100vh;
+  padding-top: 20vh; /* Adjust this value to move everything down */
+}
+
+.centered-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.wavy-text-container {
+  text-align: center; /* Increased this value to move the text lower */
 }

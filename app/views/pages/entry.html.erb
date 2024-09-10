@@ -1,40 +1,17 @@
 <%# Centered button container %>
-<div class="centered-button-container">
-  <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
-    <%= image_tag 'swimfinder.png', alt: 'Swim Logo', class: 'swim-logo' %>
-    <span class="wavy-text">
+<div class="centered-container">
+  <div class="centered-button-container">
+    <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
+      <%= image_tag 'swimfinder.png', alt: 'Swim Logo', class: 'swim-logo' %>
+    <% end %>
+  </div>
+  <div class="wavy-text-container">
       <% "Click here to start".each_char.with_index do |char, index| %>
-        <span style="animation-delay: <%= index * 0.1 %>s"><%= char %></span>
+        <span style="--i: <%= index %>"><%= char %></span>
       <% end %>
-    </span>
-  <% end %>
+    </div>
 </div>
 
-<style>
-  .centered-button-container {
-    position: absolute;
-    top: 30%; /* Adjust this value to move the button higher or lower */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-  }
-  .wavy-text {
-    display: inline-block;
-  }
-  .wavy-text span {
-    display: inline-block;
-    animation: wave 2s infinite;
-    animation-delay: calc(0.1s * var(--i));
-  }
-  @keyframes wave {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-</style>
 
 <%# Water effect elements %>
 <div id='surface'></div>
