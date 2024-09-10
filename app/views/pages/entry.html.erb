@@ -1,15 +1,13 @@
-<%# <div id="welcome-popup" class="popup" data-controller="popup">
-  <div class="popup-content" style="background-image: url(<%= asset_path('logo.png') %>
-    <%# <button id="explore-button"><b>Let's explore</b></button>
-  </div>
-</div> %>
 
-<%# <div class="centered-button-container card-default " data-controller="button-animation">
+<%# Centered button container %>
+<div class="centered-button-container ">
   <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
-<%#     <%= image_tag 'swimlogo.png', alt: 'Swim Logo', class: 'swim-logo' %>
-  <%# <% end %>
-<%# </div>
+    <%= image_tag 'swimfinder.png', alt: 'Swim Logo', class: 'swim-logo' %>
+    <span>- Click here to start -</span>
+  <% end %>
+</div>
 
+<%# Water effect elements %>
 <div id='surface'></div>
 <div id='caustics'></div>
 <div id='bg'></div>
@@ -19,9 +17,10 @@
   <div id='sun_layer3'></div>
 </div>
 
+<%# SVG filter for noise effect %>
 <svg>
   <filter id="noise1">
     <feTurbulence type="turbulence" baseFrequency=".05" numOctaves="1" seed="3" stitchTiles='stitch' />
     <feDisplacementMap in="SourceGraphic" scale="10" />
   </filter>
-</svg>  %>
+</svg>

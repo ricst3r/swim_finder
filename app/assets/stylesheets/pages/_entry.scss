@@ -26,6 +26,7 @@
   width: 1000px;
   height: auto;
   margin-bottom: 10px;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
 }
 .centered-button-container {
   position: absolute;
@@ -43,5 +44,3 @@
   position: relative;
   overflow: hidden;
 }
-
-
