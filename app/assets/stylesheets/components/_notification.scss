@@ -1,0 +1,22 @@
+.flashmsg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.flashmsg .notice,
+.flashmsg .alert {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.flashmsg .notice {
+  background-color: lightskyblue;
+}
+
+.flashmsg .alert {
+  background-color: rgba(255, 42, 0, 0.567);
+}
