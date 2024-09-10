@@ -1,6 +1,10 @@
-<div id="message-<%= message.id %>">
-  <small>
-    <strong><%= message.user.name %></strong>
-  </small>
-  <p><%= message.content %></p>
-</div>
+  <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-content-start' %>">
+    <div class="message-container <%= message.user == current_user ? 'sender-style' : 'receiver-style' %>">
+      <div id="message-<%= message.id %>" class="message-content">
+        <div class="message-sender"><%= message.user.name %></div>
+        <div class="message-box">
+          <%= message.content %>
+        </div>
+      </div>
+    </div>
+  </div>
