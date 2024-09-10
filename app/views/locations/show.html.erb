@@ -23,13 +23,10 @@
           <% end %>
           <span class="ml-2">(<%= average_rating %>)</span>
         </p>
-        <%= form_for [@location, Favorite.new] do |f| %>
-          <div class="d-flex justify-content-center">
-            <%= f.submit "Add to Favorites", class: "btn mx-2", style: "background-color: #1295B1; color: white;" %>
-          <% end %>
-          <%= link_to "Add a Review", new_location_review_path(@location), class: "btn mx-2", style: "background-color: #1295B1; color: white;" %>
-          </div>
-          </div>
+        <%= button_to [@location, Favorite.new], method: :post, class: "btn-favorite-heart mx-2", title: "Add to Favorites" do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+        <%= link_to "Add a Review", new_location_review_path(@location), class: "btn btn-add-review" %>
       </div>
     </div>
   </div>
