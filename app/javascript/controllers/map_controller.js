@@ -67,7 +67,7 @@ export default class extends Controller {
       // Create a DOM element for each marker
       const el = document.createElement('div');
       el.className = 'marker';
-      el.style.backgroundImage = "url('/assets/logo_round.png')";
+      el.style.backgroundImage = "url('https://res.cloudinary.com/dqdmlrr95/image/upload/v1725966245/logo_round_ex6cxy.png')";
       el.style.width = '30px';  // Adjust size as needed
       el.style.height = '30px'; // Adjust size as needed
       el.style.backgroundSize = 'contain';
