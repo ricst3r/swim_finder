@@ -28,11 +28,19 @@
     </div>
   </div>
 
-<h3 class="text-center text-white mt-3">About Me</h3>
-    <div class="about-me card bg-white shadow-sm rounded p-3 mb-3 mt-3" style="border-radius: 20px; margin-left: 15px; margin-right: 15px;">
-      <p><%= @user.bio %></p>
-    </div>
-    <% if current_user != @user %>
+<div class="d-flex justify-content-between align-items-center mt-3">
+  <div class="flex-grow-1 text-center">
+    <h3 class="text-white mb-0">About Me</h3>
+  </div>
+  <%= link_to edit_user_path(@user), class: "btn btn-light rounded-circle d-flex justify-content-center align-items-center", style: "width: 45px; height: 45px; border: 2px solid #1295B1; margin-right: 15px;" do %>
+    <i class="fa-brands fa-reddit-alien" style="color: #1295B1; font-size: 1.2rem;"></i>
+  <% end %>
+</div>
+
+<div class="about-me card bg-white shadow-sm rounded p-3 mb-3 mt-3" style="border-radius: 20px; margin-left: 15px; margin-right: 15px;">
+  <p><%= @user.bio %></p>
+</div>
+<% if current_user != @user %>
         <h3 class="text-center text-white">Favourites</h3>
         <% if @user.favorites.any? %>
           <div class="row">
@@ -116,7 +124,7 @@
     </div>
     <% end %>
     <% if current_user == @user %>
-      <div>
+      <div class="mt-4 text-center">
         <%= button_to "Log Out", destroy_user_session_path, method: :delete, id: "logout-button", class: "btn btn-safe text-white" %>
       </div>
     <% end %>
