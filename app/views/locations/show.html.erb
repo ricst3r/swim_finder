@@ -1,4 +1,4 @@
-<div class="location-header card bg-white shadow-sm rounded mb-4">
+<div class="location-header card bg-white shadow-sm rounded mb-4" style="margin: 20px 20px 0 20px;">
   <div class="row no-gutters">
     <div class="col-md-6">
       <%= image_tag @location.image, class: "img-head img-fluid rounded-left", style: "height: 300px; object-fit: cover;" if @location.image.attached? %>
@@ -31,8 +31,11 @@
     </div>
   </div>
 </div>
-<div class="reviews-section card bg-white shadow-sm rounded p-4">
-  <h2 class="mb-4">Reviews</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+  <h2 class="mb-4 text-center text-white">Reviews</h2>
   <% if @location.reviews.any? %>
     <% @location.reviews.each do |review| %>
       <div class="review-item card bg-white shadow-sm rounded mb-4 p-3">
@@ -67,4 +70,3 @@
   <% else %>
     <p>No reviews yet. Be the first to review this location!</p>
   <% end %>
-</div>
