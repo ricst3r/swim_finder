@@ -43,13 +43,21 @@
                     <div class="col-4">
                       <% if favorite.location.image.attached? %>
                         <%= link_to location_path(favorite.location) do %>
-                          <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                          <%= cl_image_tag favorite.location.image.key, class: "favorite-image img-fluid rounded-left w-100", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
                         <% end %>
                       <% end %>
                     </div>
                     <div class="col-8">
                       <div class="card-body p-0">
                         <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location), class: "text-black text-decoration-none" %></h5>
+                        <div class="location-info d-flex justify-content-between align-items-center">
+                          <% average_rating = favorite.location.reviews.average(:rating).to_f.round(1) %>
+                          <% full_stars = average_rating.to_i %>
+                          <% empty_stars = 5 - full_stars %>
+                          <span class="stars">
+                            <%= ('★ ' * full_stars + '☆ ' * empty_stars).strip %>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -88,6 +96,14 @@
                   <div class="col-8">
                     <div class="card-body p-0">
                       <h5 class="card-title mb-0"><%= link_to location.name, location_path(location), class: "text-black text-decoration-none" %></h5>
+                      <div class="location-info d-flex justify-content-between align-items-center">
+                        <% average_rating = location.reviews.average(:rating).to_f.round(1) %>
+                        <% full_stars = average_rating.to_i %>
+                        <% empty_stars = 5 - full_stars %>
+                        <span class="stars">
+                          <%= ('★ ' * full_stars + '☆ ' * empty_stars).strip %>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -102,7 +118,7 @@
     <% end %>
     <% if current_user == @user %>
       <div>
-        <%= button_to "Log Out", destroy_user_session_path, method: :delete, id: "logout-button", class: "btn btn-safe" %>
+        <%= button_to "Log Out", destroy_user_session_path, method: :delete, id: "logout-button", class: "btn btn-safe text-white" %>
       </div>
     <% end %>
 
