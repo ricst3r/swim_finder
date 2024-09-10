@@ -19,7 +19,6 @@ class LocationsController < ApplicationController
     @location.user = current_user if user_signed_in?
 
     if @location.save
-      # Broadcast the new location to all subscribers
       # Turbo::StreamsChannel.broadcast_append_to(
       #   "locations",
       #   target: "locations",
@@ -48,7 +47,7 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:name, :rating, :address, :image)
+    params.require(:location).permit(:name, :rating, :address, :image, :latitude, :longitude)
   end
 
 end

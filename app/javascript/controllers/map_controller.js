@@ -18,13 +18,10 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/streets-v10"
     })
 
-    // Add fullscreen control
-    // this.map.addControl(new mapboxgl.FullscreenControl());
-
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
 
-    // Erstellen Sie einen benutzerdefinierten Geocoder
+    // Create a custom geocoder
     const customGeocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl,
@@ -35,6 +32,32 @@ export default class extends Controller {
     })
 
     this.map.addControl(customGeocoder)
+
+    // Add a Turbo Stream listener
+    document.addEventListener("turbo:load", () => {
+      this.#initializeMap();
+    });
+
+    // Listener for new locations
+    document.addEventListener("turbo:frame-load", (event) => {
+      if (event.target.id === "locations") {
+        this.addNewMarkers();
+      }
+    });
+  }
+
+  addNewMarkers() {
+    const newLocations = document.querySelectorAll('.location[data-marker="false"]');
+    newLocations.forEach((location) => {
+      const lat = location.dataset.lat;
+      const lng = location.dataset.lng;
+      if (lat && lng) {
+        const marker = new mapboxgl.Marker()
+          .setLngLat([lng, lat])
+          .addTo(this.map);
+        location.dataset.marker = "true";
+      }
+    });
   }
 
   #addMarkersToMap() {
@@ -61,14 +84,12 @@ export default class extends Controller {
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
-    console.log(this.spotsValue)
     this.spotsValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 0 })
   }
 
   #forwardGeocoder(query) {
     if (!query) return [];
-    console.log(this.spotsValue)
     const features = this.spotsValue
       .filter(spot =>
         (spot.name && spot.name.toLowerCase().includes(query.toLowerCase())) ||
@@ -80,12 +101,18 @@ export default class extends Controller {
           type: 'Point',
           coordinates: [spot.lng, spot.lat]
         },
-        place_name: spot.name || `    SwimFind Spot found`,
+        place_name: spot.name || `SwimFind Spot found`,
         place_type: ['place'],
         bbox: [spot.lng, spot.lat, spot.lng, spot.lat]
       }));
 
     return features;
+  }
+
+  #initializeMap() {
+    // Add any initialization logic here
+    this.#addMarkersToMap();
+    this.#fitMapToMarkers();
   }
 
 }

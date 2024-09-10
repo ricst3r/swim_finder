@@ -10,6 +10,7 @@
                   <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter location name" %>
                 </div>
 
+
              <div class="mb-4">
           <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
           <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
@@ -26,6 +27,7 @@
                   <%= form.label :address, class: "form-label fw-bold" %>
                   <div data-controller="address-autocomplete"
                        data-address-autocomplete-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                       <%= form.text_field :address, data: { address_autocomplete_target: "address" }, class: "visually-hidden" %>
                   </div>
                 </div>
 
