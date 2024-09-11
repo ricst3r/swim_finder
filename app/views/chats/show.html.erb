@@ -10,11 +10,13 @@
   </div>
 </div>
 
-<%= turbo_stream_from "chat_#{@chat.id}_messages" %>
-<div id="messages">
-<% @chat.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
-<% end %>
+<div class="container">
+  <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
+  <div id="messages">
+  <% @chat.messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+  <% end %>
+  </div>
 </div>
 
 <div class="message-form-container">
