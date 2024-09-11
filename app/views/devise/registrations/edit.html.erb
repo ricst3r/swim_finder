@@ -13,6 +13,17 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "username" }%>
+    <%= f.input :name,
+                required: false,
+                input_html: { autocomplete: "name" }%>
+    <%= f.input :bio,
+                required: false,
+                as: :text,
+                input_html: { rows: 3 }%>
+    <%= f.input :image,
+                as: :file,
+                required: false,
+                input_html: { accept: 'image/*' }%>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
