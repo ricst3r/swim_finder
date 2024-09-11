@@ -96,6 +96,9 @@ div.mapboxgl-ctrl-geocoder--powered-by {
   visibility: hidden;
 }
 .mapboxgl-popup-close-button {
+  position: absolute;
+  top: -5px;
+  right: 5px;
   width: 30px;
   height: 30px;
   font-size: 24px;
@@ -106,6 +109,7 @@ div.mapboxgl-ctrl-geocoder--powered-by {
   border: none;
   padding: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
 .mapboxgl-popup-close-button:hover {
