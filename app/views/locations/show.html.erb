@@ -30,8 +30,8 @@
             </span>
           <% end %>
         </div>
-        <%= button_to [@location, Favorite.new], method: :post, class: "btn-favorite-heart position-absolute", style: "top: 10px; right: 20px; ", title: "Add to Favorites" do %>
-          <i class="fa-solid fa-heart heart-icon"></i>
+        <%= button_to [@location, Favorite.new], method: :post, class: "btn-favorite-heart position-absolute favorite-btn", style: "top: 10px; right: 20px; background: none; border: none;", title: "Add to Favorites", data: { controller: "favorite" } do %>
+          <i class="fa-solid fa-heart heart-icon" style="color: #ffcccb; transition: color 0.3s ease;"></i>
         <% end %>
       </div>
     </div>
@@ -90,5 +90,18 @@
 <script>
   document.addEventListener("turbo:load", function() {
     document.body.style.overflowY = "scroll";
+  });
+
+  document.addEventListener('turbo:load', function() {
+    const favoriteBtn = document.querySelector('.favorite-btn');
+    const heartIcon = favoriteBtn.querySelector('.heart-icon');
+
+    favoriteBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      heartIcon.style.color = '#ff4d4d';
+
+      // Submit the form programmatically
+      this.closest('form').submit();
+    });
   });
 </script>
