@@ -18,11 +18,11 @@
              <% if current_user != @user %>
   <% chat = Chat.between(current_user.id, @user.id).first_or_create rescue nil %>
   <% if chat %>
-    <%= button_to chat_path(chat), class: "btn rounded-pill d-flex justify-content-center align-items-center", style: "background-color: #029f9f; color: white; width: 75px; height: 45px;" do %>
+    <%= button_to chat_path(chat), class: "btn rounded-pill d-flex justify-content-center align-items-center", style: "background-color: #0291d9; color: white; width: 75px; height: 45px;" do %>
       <i class="fas fa-comment"></i>
     <% end %>
   <% else %>
-    <%= button_to user_chats_path(@user.id), method: :post, class: "btn rounded-circle d-flex justify-content-center align-items-center", style: "background-color: #029f9f; color: white; width: 75px; height: 45px;" do %>
+    <%= button_to user_chats_path(@user.id), method: :post, class: "btn rounded-circle d-flex justify-content-center align-items-center", style: "background-color: #0291d9; color: white; width: 75px; height: 45px;" do %>
       <i class="fas fa-comment"></i>
     <% end %>
   <% end %>
