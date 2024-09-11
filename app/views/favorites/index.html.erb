@@ -7,7 +7,7 @@
 </div>
 
 <% if @favorites.any? %>
-  <div class="favorites-list p-3 favorite-background" >
+  <div class="favorites-list p-3 favorite-background" style="margin-bottom: 70px;">
     <% @favorites.each do |favorite| %>
       <div class="favorite-item card bg-white rounded shadow-sm mb-4 p-3 position-relative">
         <%= link_to location_favorite_path(favorite.location, favorite), data: { 'turbo-method': :delete, 'turbo-confirm': "Are you sure you want to delete this from your favourites?" }, class: 'position-absolute top-0 end-0 m-2 text-decoration-none' do %>

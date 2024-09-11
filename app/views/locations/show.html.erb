@@ -32,7 +32,7 @@
 </div>
 
 <div class="reviews-header position-relative mb-4">
-  <h2 class="text-center text-white">Reviews</h2>
+  <h2 class="text-center text-white mt-2">Reviews</h2>
   <%= link_to new_location_review_path(@location), class: "btn btn-add-review position-absolute rounded-circle d-flex justify-content-center align-items-center", style: "top: 50%; right: 20px; transform: translateY(-50%); width: 40px; height: 40px; background-color: #ffffff; color: #1295B1;" do %>
     <i class="fa-solid fa-plus" style="font-weight: bold;"></i>
   <% end %>
@@ -78,3 +78,10 @@
     </div>
   </div>
 </div>
+
+<!-- This script is for scrolling to work until the end when we create many favorites -->
+<script>
+  document.addEventListener("turbo:load", function() {
+    document.body.style.overflowY = "scroll";
+  });
+</script>

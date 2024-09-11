@@ -95,3 +95,19 @@ div.mapboxgl-ctrl-geocoder--powered-by {
 .mapboxgl-ctrl-geocoder--icon-search {
   visibility: hidden;
 }
+.mapboxgl-popup-close-button {
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 24px;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: #000;
+}
