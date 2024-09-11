@@ -14,7 +14,7 @@
   }
 
   .message-content {
-    border-radius: 1rem;
+    border-radius: 2rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
     max-width: 70%;
@@ -69,7 +69,7 @@
   max-width: 800px;
   margin: 2rem auto;
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
+  border-radius: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
   overflow: hidden;
@@ -94,6 +94,63 @@
   &::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 3px;
+  }
+
+  .message-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    max-width: 70%;
+  }
+
+  .message-group.sent {
+    align-self: flex-end;
+    align-items: flex-end;
+  }
+
+  .message-group.received {
+    align-self: flex-start;
+    align-items: flex-start;
+  }
+
+  .message-sender {
+    color: white;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+    opacity: 0.8;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .message-info {
+    opacity: 0.5;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .message-content {
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    max-width: 70%;
+    width: fit-content;
+    word-wrap: break-word;
+  }
+
+  .message.sent .message-content {
+    align-self: flex-start;
+    background: $blue;
+    color: $light-gray;
+  }
+
+  .message.received .message-content {
+    align-self: flex-end;
+    background: $gray-200;
   }
 }
 
