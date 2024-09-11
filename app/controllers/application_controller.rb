@@ -1,12 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def configure_permitted_parameters
-    # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+  protected
 
-    # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :username, :name, :bio, :image, :password, :password_confirmation, :current_password])
   end
 
   def default_url_options
