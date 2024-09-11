@@ -20,7 +20,7 @@ body {
   scroll-behavior: smooth;
   min-height: 100%;
 }
-p {
+p, label {
 
   font-family: $body-font;
 }
