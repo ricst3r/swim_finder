@@ -1,49 +1,55 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container-fluid p-0">
+  <% if resource.image.attached? %>
+    <div class="w-100 mb-4">
+      <%= cl_image_tag resource.image.key, class: "img-fluid w-100", style: "max-height: 300px; object-fit: cover; border: none;" %>
+    </div>
+  <% end %>
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 74px;">
+    <h1 class="text-center mb-2">Edit Profile</h1>
+    <h2 class="text-center"><%= resource.name || resource.email %></h2>
+  </div>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <div class="mb-3 mx-3">
+      <%= f.input :email, required: true, autofocus: true, input_html: { class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <div class="mb-3 mx-3">
+      <%= f.input :username, required: true, input_html: { class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-    <%= f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "username" }%>
-    <%= f.input :name,
-                required: false,
-                input_html: { autocomplete: "name" }%>
-    <%= f.input :bio,
-                required: false,
-                as: :text,
-                input_html: { rows: 3 }%>
-    <%= f.input :image,
-                as: :file,
-                required: false,
-                input_html: { accept: 'image/*' }%>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <div class="mb-3 mx-3">
+      <%= f.input :name, required: false, input_html: { class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
+
+    <div class="mb-3 mx-3">
+      <%= f.input :bio, required: false, as: :text, input_html: { rows: 3, class: "form-control shadow-sm", style: "border-radius: 10px; resize: vertical;" } %>
+    </div>
+
+    <div class="mb-3 mx-3">
+      <%= f.input :image, as: :file, required: false, input_html: { accept: 'image/*', class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
+
+    <div class="mb-3 mx-3">
+      <%= f.input :password, hint: "leave it blank if you don't want to change it", required: false, input_html: { autocomplete: "new-password", class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
+
+    <div class="mb-3 mx-3">
+      <%= f.input :password_confirmation, required: false, input_html: { autocomplete: "new-password", class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
+
+    <div class="mb-3 mx-3">
+      <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { autocomplete: "current-password", class: "form-control shadow-sm", style: "border-radius: 10px;" } %>
+    </div>
+
+    <%= f.button :submit, "Update", class: "btn mx-3 px-4 py-2 fw-bold text-white", style: "background-color: transparent; border: 1px solid white; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;", data: { turbo: false } %>
+  <% end %>
+
+  <div class="mt-5 mx-3">
+    <h3>Cancel my account</h3>
+    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back, class: "btn btn-secondary mx-3 mt-3" %>
+</div>
