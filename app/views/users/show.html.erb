@@ -1,35 +1,41 @@
 <div class="user-profile">
-  <div class="profile-card card bg-white shadow-sm rounded">
-    <div class="row no-gutters align-items-center">
-      <div class="col-4">
-        <% if @user.image.attached? %>
-          <div class="d-flex justify-content-center">
-            <%= cl_image_tag @user.image.key, class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
-          </div>
-        <% else %>
-          <%= image_tag "default_avatar.png", class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
-        <% end %>
-      </div>
-      <div class="col-8">
-        <div class="card-body">
-          <h2 class="card-title mb-1"><%= @user.name %></h2>
-          <p class="card-text username">@<%= @user.username %></p>
+  <div class="profile-card">
+    <div class="card-content">
+      <div class="row no-gutters align-items-center">
+        <div class="col-4">
+          <% if @user.image.attached? %>
+            <div class="d-flex justify-content-center">
+              <%= cl_image_tag @user.image.key, class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
+            </div>
+          <% else %>
+            <%= image_tag "default_avatar.png", class: "avatar avatar-large profile-picture img-fluid rounded-circle", style: "width: 100px; height: 100px; object-fit: cover;" %>
+          <% end %>
+        </div>
+        <div class="col-8">
+          <div class="card-body">
+            <h2 class="card-title mb-1"><%= @user.name %></h2>
+            <p class="card-text username">@<%= @user.username %></p>
              <% if current_user != @user %>
-               <% chat = Chat.between(current_user.id, @user.id).first_or_create rescue nil %>
-               <% if chat %>
-                 <%= button_to "Message", chat_path(chat), class: "btn", style: "background-color: #1295B1; color: white;" %>
-               <% else %>
-                 <%= button_to "Message", user_chats_path(@user.id), method: :post, class: "btn", style: "background-color: #1295B1; color: white;" %>
-               <% end %>
-             <% end %>
+  <% chat = Chat.between(current_user.id, @user.id).first_or_create rescue nil %>
+  <% if chat %>
+    <%= button_to chat_path(chat), class: "btn rounded-pill d-flex justify-content-center align-items-center", style: "background-color: #029f9f; color: white; width: 75px; height: 45px;" do %>
+      <i class="fas fa-comment"></i>
+    <% end %>
+  <% else %>
+    <%= button_to user_chats_path(@user.id), method: :post, class: "btn rounded-circle d-flex justify-content-center align-items-center", style: "background-color: #029f9f; color: white; width: 75px; height: 45px;" do %>
+      <i class="fas fa-comment"></i>
+    <% end %>
+  <% end %>
+<% end %>
 
+          </div>
         </div>
       </div>
     </div>
   </div>
 
 <h3 class="text-center text-white mt-3">About Me</h3>
-    <div class="about-me card bg-white shadow-sm rounded p-3 mb-3 mt-3" style="border-radius: 20px; margin-left: 15px; margin-right: 15px;">
+    <div class="about-me card p-3 mb-3 mt-6" style="background-color: #ffffff; border-radius: 20px; margin-left: 15px; margin-right: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border: none;">
       <p><%= @user.bio %></p>
     </div>
     <% if current_user != @user %>
@@ -37,19 +43,37 @@
         <% if @user.favorites.any? %>
           <div class="row">
             <% @user.favorites.each do |favorite| %>
-              <div class="col-md-4 mb-3">
+              <div class="col-md-4 mb-6">
                 <div class="favorite-item card bg-white shadow-sm rounded p-3" style="border-radius: 15px; margin-left: 10px; margin-right: 10px;">
                   <div class="row no-gutters align-items-center">
                     <div class="col-4">
                       <% if favorite.location.image.attached? %>
                         <%= link_to location_path(favorite.location) do %>
-                          <%= cl_image_tag favorite.location.image.key, class: "favorite-image rounded-circle", style: "width: 60px; height: 60px; object-fit: cover;", onerror: "this.style.display='none'" %>
+                          <%= cl_image_tag favorite.location.image.key, class: "favorite-image img-fluid rounded-left w-100", style: "height: 100px; object-fit: cover;", onerror: "this.style.display='none'" %>
                         <% end %>
                       <% end %>
                     </div>
                     <div class="col-8">
                       <div class="card-body p-0">
                         <h5 class="card-title mb-0"><%= link_to favorite.location.name, location_path(favorite.location), class: "text-black text-decoration-none" %></h5>
+                        <div class="location-info d-flex justify-content-between align-items-center">
+                          <p class="card-text text-center">
+          <% average_rating = @location.reviews.average(:rating).to_f.round(1) %>
+          <% average_rating.to_i.times do %>
+            <i class="fas fa-star text-warning"></i>
+          <% end %>
+          <% if average_rating % 1 >= 0.5 %>
+            <i class="fas fa-star-half-alt text-warning"></i>
+            <% (4 - average_rating.to_i).times do %>
+              <i class="far fa-star text-warning"></i>
+            <% end %>
+          <% else %>
+            <% (5 - average_rating.to_i).times do %>
+              <i class="far fa-star text-warning"></i>
+            <% end %>
+          <% end %>
+          <span class="ml-2">(<%= average_rating %>)</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -65,17 +89,17 @@
     <% if current_user == @user %>
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h3 class="text-center text-white mx-auto" style="max-width: 300px;">My Swim Locations</h3>
-          <%= link_to new_location_path, class: "btn btn-sm rounded-circle d-flex justify-content-center align-items-center", style: "background-color: #1295B1; color: white; width: 40px; height: 40px;" do %>
-            <i class="fas fa-plus"></i>
+          <%= link_to new_location_path, class: "btn btn-sm rounded-circle d-flex justify-content-center align-items-center add-location-btn", style: "background-color: white; width: 45px; height: 45px; border: 2px solid #1295B1; margin-right: 15px;" do %>
+            <i class="fas fa-plus" style="color: #0d6efd; font-size: 1.2rem;"></i>
           <% end %>
         </div>
         <% if @user.locations.any? %>
           <div class="row">
           <% @user.locations.each do |location| %>
-            <div class="col-md-4 mb-3">
-              <div class="swim-item card bg-white shadow-sm rounded p-3 position-relative" style="border-radius: 15px; margin: 10px;">
-                <%= link_to edit_location_path(location), class: "position-absolute top-0 end-0 m-2", title: "Edit location" do %>
-                  <i class="fas fa-edit text-primary" style="font-size: 0.8rem;"></i>
+            <div class="col-md-4 mb-6">
+              <div class="swim-item card bg-white shadow-sm rounded p-3 position-relative" style="border-radius: 15px; margin: 25px 10px;">
+                <%= link_to edit_location_path(location), class: "position-absolute top-0 end-0 m-2 edit-icon", title: "Edit location" do %>
+                  <i class="fas fa-edit"></i>
                 <% end %>
                 <div class="row no-gutters align-items-center">
                   <div class="col-4">
@@ -88,6 +112,14 @@
                   <div class="col-8">
                     <div class="card-body p-0">
                       <h5 class="card-title mb-0"><%= link_to location.name, location_path(location), class: "text-black text-decoration-none" %></h5>
+                      <div class="location-info d-flex justify-content-between align-items-center">
+                        <% average_rating = location.reviews.average(:rating).to_f.round(1) %>
+                        <% full_stars = average_rating.to_i %>
+                        <% empty_stars = 5 - full_stars %>
+                        <span class="stars">
+                          <%= ('★ ' * full_stars + '☆ ' * empty_stars).strip %>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -96,13 +128,12 @@
         </div>
       <% else %>
         <p>You haven't added any swim locations yet.</p>
-        <%= link_to "Add a new swim location", new_location_path, class: "btn btn-primary" %>
       <% end %>
     </div>
     <% end %>
     <% if current_user == @user %>
-      <div>
-        <%= button_to "Log Out", destroy_user_session_path, method: :delete, id: "logout-button", class: "btn btn-safe" %>
+      <div class="mt-4 text-center">
+        <%= button_to "Log Out", destroy_user_session_path, method: :delete, id: "logout-button", class: "btn btn-safe text-white" %>
       </div>
     <% end %>
 

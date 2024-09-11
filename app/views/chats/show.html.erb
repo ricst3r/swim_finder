@@ -10,20 +10,27 @@
   </div>
 </div>
 
-<%= turbo_stream_from "chat_#{@chat.id}_messages" %>
-<div id="messages">
-<% @chat.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
-<% end %>
+<div class="container">
+  <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
+  <div id="messages">
+  <% @chat.messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+  <% end %>
+  </div>
 </div>
 
-<%= simple_form_for [@chat, @message],
-  html: {class: "d-flex",
-         data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f|
-%>
-  <div class="message-form">
-    <%= f.input :content, input_html: { class: 'me-2', style: 'width: 200px; height: 40px;' }, label: false, placeholder: 'Type your message...', wrapper_html: { class: 'd-flex align-items-end' } %>
-    <%= f.submit "Send", class: "btn btn-primary", style: 'height: 40px; background-color: #3498db;' %>
-  </div>
-<% end %>
+<div class="message-form-container">
+  <%= simple_form_for [@chat, @message],
+    html: {class: "d-flex justify-content-center",
+           data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }} do |f|
+  %>
+    <div class="message-form d-flex align-items-center w-100">
+      <%= f.input :content,
+                  input_html: { class: 'flex-grow-1 me-2', style: 'min-width: 200px;' },
+                  label: false,
+                  placeholder: 'Type your message...',
+                  wrapper_html: { class: 'd-flex align-items-center flex-grow-1' } %>
+      <%= f.submit "Send", class: "btn btn-primary send-button" %>
+    </div>
+  <% end %>
 </div>

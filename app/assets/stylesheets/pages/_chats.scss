@@ -1,5 +1,5 @@
 .chats {
-  // [...]
+
   .message {
     display: flex;
     flex-direction: column;
@@ -32,4 +32,59 @@
     align-self: flex-end;
     background: $gray-200;
   }
+}
+
+.message-form {
+  display: flex; // Aktiviert Flexbox
+  align-items: center; // Zentriert Elemente vertikal
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.289);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  padding: 10px; // Fügt etwas Polsterung hinzu
+
+  input[type="text"] {
+    flex-grow: 1; // Lässt das Eingabefeld den verfügbaren Platz einnehmen
+    margin-right: 10px; // Abstand zum Senden-Button
+    width: calc(100% - 50px); // Adjust this value based on your button width
+    height: 40px;
+  }
+
+  button {
+    flex-shrink: 0; // Verhindert, dass der Button schrumpft
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  &:focus-within {
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.send-button {
+  height: 40px;
+  width: 80px; // Adjust this if needed
+  background-color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%; // This makes the button circular
+  padding: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.message-form-container {
+  position: fixed;
+  bottom: 70px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
