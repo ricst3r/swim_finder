@@ -1,6 +1,9 @@
 {
- "name": "App",
- "icons": [
+"background_color": "white",
+"description": "Dive into the world of open water swimming with Swimfinder.me. Explore top-rated swim spots, share your experiences, and meet like-minded swimmers from around the globe.",
+"display": "fullscreen",
+"name": "SwimFinder",
+"icons": [
   {
    "src": "\/android-icon-36x36.png",
    "sizes": "36x36",
