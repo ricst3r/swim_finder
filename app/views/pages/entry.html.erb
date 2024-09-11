@@ -1,10 +1,19 @@
 <%# Centered button container %>
-<div class="centered-button-container ">
-  <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
-    <%= image_tag 'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725979107/ib9lqd8cphjvd9qta1xr.png', alt: 'Swim Logo', class: 'swim-logo' %>
-    <span>- Click here to start -</span>
-  <% end %>
+
+<div class="centered-container">
+  <div class="centered-button-container">
+    <%= link_to home_path, class: "swim-logo-button button-default", data: { action: "click->button-animation#changeStyle click->button-animation#animateButton", button_animation_target: "button" } do %>
+         <%= image_tag 'https://res.cloudinary.com/dqdmlrr95/image/upload/v1725979107/ib9lqd8cphjvd9qta1xr.png', alt: 'Swim Logo', class: 'swim-logo' %>
+    <% end %>
+  </div>
+  <div class="wavy-text-container">
+      <% "Click   here   to   start".each_char.with_index do |char, index| %>
+        <span style="--i: <%= index %>; font-family: 'Lobster Two', sans-serif; font-weight: bold; font-size: 18px;"><%= char %></span>
+      <% end %>
+  </div>
+
 </div>
+
 
 <%# Water effect elements %>
 <div id='surface'></div>

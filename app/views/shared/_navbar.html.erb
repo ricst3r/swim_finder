@@ -4,30 +4,30 @@
 
       <%= link_to home_path, class: "nav-item" do %>
       <div class="icon-container">
-        <i class="fa-regular fa-map"></i>
+        <i class="fa-solid fa-map"></i>
       </div>
-      <p>Map</p>
+
       <% end %>
       <%= link_to chats_path, class: "nav-item" do %>
       <div class="icon-container">
         <i class="fa-solid fa-comment"></i>
       </div>
-      <p>Chats</p>
+
       <% end %>
-      <div class="icon-container">
+      <div class="icon-container swimfinder-icon-container">
         <%= image_tag 'swimfinder.png', alt: 'Swimfinder', class: 'swimfinder-icon' %>
       </div>
       <%= link_to favorites_path, class: "nav-item" do %>
       <div class="icon-container">
-        <i class="fa-solid fa-heart-circle-check"></i>
+        <i class="fa-solid fa-heart"></i>
       </div>
-      <p>Favourites</p>
+
       <% end %>
       <%= link_to user_path(current_user.username), class: "nav-item" do %>
       <div class="icon-container">
-        <i class="fa-regular fa-user"></i>
+        <i class="fa-solid fa-user"></i>
       </div>
-      <p>Profile</p>
+
       <% end %>
     <% end %>
 
