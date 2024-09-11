@@ -5,4 +5,5 @@ class UsersController < ApplicationController
     @locations = @user.locations
   end
 
+
 end
