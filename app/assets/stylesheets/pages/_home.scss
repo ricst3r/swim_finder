@@ -20,8 +20,12 @@ body {
   scroll-behavior: smooth;
   min-height: 100%;
 }
+p {
+
+  font-family: $body-font;
+}
 body {
-  font-family: "Asap", sans-serif;
+  font-family: $body-font;
   position: relative;
   width: 100vw;
   min-height: 100vh;
