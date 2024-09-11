@@ -17,6 +17,7 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     @location.user = current_user if user_signed_in?
+    
 
     if @location.save
       # Turbo::StreamsChannel.broadcast_append_to(
