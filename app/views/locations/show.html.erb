@@ -23,6 +23,13 @@
           <% end %>
           <span class="ml-2">(<%= average_rating %>)</span>
         </p>
+        <div class="amenities-icons d-flex justify-content-center">
+          <% @location.reviews.flat_map(&:amenities).uniq.take(5).each do |amenity| %>
+            <span title="<%= amenity.title %>" class="mx-2"> <!-- Added mx-2 class for horizontal margin -->
+              <%= amenity.title.split.first %>
+            </span>
+          <% end %>
+        </div>
         <%= button_to [@location, Favorite.new], method: :post, class: "btn-favorite-heart position-absolute", style: "top: 10px; right: 20px; ", title: "Add to Favorites" do %>
           <i class="fa-solid fa-heart heart-icon"></i>
         <% end %>
