@@ -1,17 +1,19 @@
-<div class="container">
+<div class="container-fluid p-0">
   <% if @location.image.attached? %>
-    <div class="text-center mb-4">
-      <%= cl_image_tag @location.image.key, class: "img-head img-fluid rounded", style: "max-height: 300px; object-fit: cover;" %>
+    <div class="w-100 mb-4">
+      <%= cl_image_tag @location.image.key, class: "img-fluid w-100", style: "max-height: 300px; object-fit: cover; border: none;" %>
     </div>
   <% end %>
-  <h1 class="text-center mt-4">New Review for</h1>
-  <h2 class="text-center"><%= link_to @location.name, location_path(@location), class: "text-decoration-none text-black" %></h2>
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 74px;">
+    <h1 class="text-center mb-2">New Review for</h1>
+    <h2 class="text-center"><%= link_to @location.name, location_path(@location), class: "text-decoration-none text-black" %></h2>
+  </div>
   <%= form_with(model: [@location, @review], local: true) do |form| %>
-    <div class="mb-3">
-      <%= form.label :content, "Review", class: "form-label" %>
-      <%= form.text_area :content, rows: 5, class: "form-control" %>
+    <div class="mb-3 mx-3">
+      <%= form.label :content, "Review", class: "form-label fw-bold" %>
+      <%= form.text_area :content, rows: 5, class: "form-control shadow-sm", style: "border-radius: 10px; resize: vertical;" %>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 mx-3">
       <h4>Amenities</h4>
       <div class="d-flex flex-wrap gap-2">
         <% Amenity.all.each do |amenity| %>
@@ -23,7 +25,7 @@
         <%= hidden_field_tag "review[amenity_ids][]", "" %>
       </div>
     </div>
-      <div class="mb-4">
+      <div class="mb-4 mx-3">
           <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
           <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
             <% 1.upto(5) do |i| %>
@@ -34,10 +36,11 @@
             <% end %>
           </div>
         </div>
-    <div class="mb-3">
-      <%= form.label :image, "Upload Photo", class: "form-label" %>
+    <div class="mb-3 mx-3">
+      <%= form.label :image, "Upload Photo", class: "form-label fw-bold" %>
       <%= form.file_field :image, class: "form-control", accept: "image/*" %>
     </div>
-    <%= form.submit "Submit Review", class: "btn btn-primary", style: "background-color: #1295B1;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
+    <%= form.submit "Submit Review", class: "btn mx-3 px-4 py-2 fw-bold text-white", style: "background-color: transparent; border: 1px solid white; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
   <% end %>
 </div>
+<style>
