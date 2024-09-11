@@ -6,3 +6,13 @@
   border-radius: 12px;
   margin-bottom: 10px;
 }
+.favorite-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.favorite-btn:focus {
+  outline: none;
+}

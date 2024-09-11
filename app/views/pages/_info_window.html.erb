@@ -5,31 +5,31 @@
     No image available
   <% end %>
 </span>
-
-<div class="d-flex justify-content-between fav">
-  <div class="location-info" style="text-decoration: none;">
-    <h5><%= location.name %></h5>
-
-    <% average_rating = location.reviews.average(:rating).to_f.round(1) %>
-    <% full_stars = average_rating.to_i %>
-    <% empty_stars = 5 - full_stars %>
-
-    <span class="stars">
-      <%= '★' * full_stars %>
-      <%= '☆' * empty_stars %>
+<div class="d-flex flex-column justify-content-between align-items-start fav">
+  <div class="d-flex justify-content-between align-items-start w-100">
+    <div class="location-info" style="text-decoration: none;">
+      <h5><%= location.name %></h5>
+      <% average_rating = location.reviews.average(:rating).to_f.round(1) %>
+      <% full_stars = average_rating.to_i %>
+      <% empty_stars = 5 - full_stars %>
+      <span class="stars">
+        <%= '★' * full_stars %>
+        <%= '☆' * empty_stars %>
+      </span>
+    </div>
+    <span>
+      <%= form_for [location, Favorite.new], url: location_favorites_path(location), method: :post do |f| %>
+        <%= f.button type: 'submit', class: "btn p-0 favorite-btn" do %>
+          <i class="fa-solid fa-heart" style="color: #ff0000;"></i>
+        <% end %>
+      <% end %>
     </span>
   </div>
-
-  <%= link_to "", location_path(location), class: "stretched-link" %>
-
-  <span>
-    <%= form_for [location, Favorite.new], url: location_favorites_path(location), method: :post do |f| %>
-      <div class="d-flex ">
-        <%= f.button type: 'submit', class: "btn p-0", style: "background-color: #1295B1;" do %>
-          <i class="fa-solid fa-heart" style="color: white;"></i>
-        <% end %>
-      </div>
+  <div class="amenities-icons mt-2">
+    <% location.reviews.flat_map(&:amenities).uniq.take(5).each do |amenity| %>
+      <span title="<%= amenity.title %>" class="mr-1">
+        <%= amenity.title.split.first %>
+      </span>
     <% end %>
-  </span>
-
-</div>
+  </div>
+  <%= link_to "", location_path(location), class: "stretched-link" %>
