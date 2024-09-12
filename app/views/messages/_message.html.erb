@@ -1,7 +1,7 @@
 <div class="message-sender" style="margin-bottom: -11px;">
       <span style="font-weight: 600;"><%= message.user.name %></span>
     </div>
-  <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-content-start' %>" style="justify-content: flex-end;">
+  <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-start' %>" style="justify-content: flex-end;">
     <div class="message-time" style="font-size: 0.8em; color: white; margin-right: 13px; margin-top: 31px;"><%= message.created_at.strftime("%H:%M") %></div>
     <div class="message-container <%= message.user == current_user ? 'sender-style' : 'receiver-style' %>">
       <div id="message-<%= message.id %>" class="message-content">
