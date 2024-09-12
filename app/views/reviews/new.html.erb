@@ -6,11 +6,11 @@
   <% end %>
   <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 74px;">
     <h1 class="text-center mb-2 text-white">New Review for</h1>
-    <h2 class="text-center"><%= link_to @location.name, location_path(@location), class: "text-decoration-none text-black" %></h2>
+    <h2 class="text-center"><%= link_to @location.name, location_path(@location), class: "text-decoration-none text-white" %></h2>
   </div>
   <%= form_with(model: [@location, @review], local: true) do |form| %>
     <div class="mb-3 mx-3">
-      <%= form.label :content, "Review", class: "form-label fw-bold" %>
+      <%= form.label :content, "Review", class: "form-label fw-bold text-white" %>
       <%= form.text_area :content, rows: 5, class: "form-control shadow-sm", style: "border-radius: 10px; resize: vertical;" %>
     </div>
     <div class="mb-3 mx-3">
@@ -26,7 +26,7 @@
       </div>
     </div>
       <div class="mb-4 mx-3">
-          <%= form.label :rating, "Rating", class: "form-label fw-bold" %>
+          <%= form.label :rating, "Rating", class: "form-label fw-bold text-white" %>
           <div class="star-rating d-flex justify-content-center" data-controller="star-rating">
             <% 1.upto(5) do |i| %>
               <%= form.radio_button :rating, i, id: "review_rating#{i}", class: "visually-hidden", data: { action: "change->star-rating#updateStars", "star-rating-target": "input" } %>
