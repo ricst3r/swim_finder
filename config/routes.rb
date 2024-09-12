@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   resources :chats, only: [:show, :index, :destroy] do
     resources :messages, only: [:create]
   end
+
+  get '/team', to: 'pages#team', as: 'team'
+
 end

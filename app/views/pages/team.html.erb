@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-5 text-white">Meet Our Team</h1>
+
+  <div class="row">
+    <% team_members = [
+      { name: "Ric", photo: "https://avatars.githubusercontent.com/u/174737697?v=4", bio: "Ric, master of maps and database, fine tuner extraordinaire. ric@swimfinder.me" },
+      { name: "Ermira", photo: "https://avatars.githubusercontent.com/u/52653832?v=4", bio: "Ermira, tackler of complex and nuanced features, animation expert with a keen eye for design. ermira@swimfinder.me" },
+      { name: "Jaimi", photo: "https://avatars.githubusercontent.com/u/175120833?v=4", bio: "Jaimi, backend from way back, keeps the trains running on time. jaimi@swimfinder.me" },
+      { name: "Andre", photo: "https://scontent.flis8-2.fna.fbcdn.net/v/t1.6435-9/54730524_2059433220772789_5728183314146131968_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=_9DYfmopPAsQ7kNvgGhPcE3&_nc_ht=scontent.flis8-2.fna&_nc_gid=AdgV8RRCFK4Z2_MqZ2Kccu-&oh=00_AYDFBTL8G7ogfPxv09XZLXh8o5GB4_vkxCulFuZrbJ6bOg&oe=670A126A", bio: "Andre, eye for aesthetics, font master, and all round nice guy. andre@swimfinder.me" }
+    ] %>
+
+    <% team_members.each do |member| %>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="<%= member[:photo] %>" class="card-img-top" alt="<%= member[:name] %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= member[:name] %></h5>
+            <p class="card-text"><%= member[:bio] %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
