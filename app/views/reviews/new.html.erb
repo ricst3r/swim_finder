@@ -1,4 +1,4 @@
-<div class="container-fluid p-0">
+<div class="container-fluid p-0 mb-5">
   <% if @location.image.attached? %>
     <div class="w-100 mb-4">
       <%= cl_image_tag @location.image.key, class: "img-fluid w-100", style: "max-height: 300px; object-fit: cover; border: none;" %>
@@ -40,7 +40,7 @@
       <%= form.label :image, "Upload Photo", class: "form-label fw-bold text-white" %>
       <%= form.file_field :image, class: "form-control", accept: "image/*" %>
     </div>
-    <%= form.submit "Submit Review", class: "btn mx-3 px-4 py-2 fw-bold text-white", style: "background-color: transparent; border: 1px solid white; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
+    <%= form.submit "Submit Review", class: "btn mx-3 px-4 py-2 fw-bold text-white mb-5", style: "background-color: transparent; border: 1px solid white; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
   <% end %>
 </div>
 <style>
