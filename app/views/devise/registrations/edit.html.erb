@@ -1,7 +1,10 @@
-
 <div class="registration-edit-container" style="margin-right: 4px; margin-bottom: 4px;">
   <h2 class="edit-title" style="text-align: center; color: white; margin-left: 38px; margin-top: 15px;">Edit <%= resource_name.to_s.humanize %></h2>
-
+<% if resource.image.attached? %>
+  <div class="avatar-profile-photo">
+    <%= cl_image_tag resource.image.key, class: "img-fluid", style: "max-width: 100px; height: auto; border-radius: 50%; margin-bottom: 10px;" %>
+  </div>
+<% end %>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
 

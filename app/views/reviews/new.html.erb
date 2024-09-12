@@ -5,7 +5,7 @@
     </div>
   <% end %>
   <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 74px;">
-    <h1 class="text-center mb-2">New Review for</h1>
+    <h1 class="text-center mb-2 text-white">New Review for</h1>
     <h2 class="text-center"><%= link_to @location.name, location_path(@location), class: "text-decoration-none text-black" %></h2>
   </div>
   <%= form_with(model: [@location, @review], local: true) do |form| %>
@@ -37,10 +37,9 @@
           </div>
         </div>
     <div class="mb-3 mx-3">
-      <%= form.label :image, "Upload Photo", class: "form-label fw-bold" %>
+      <%= form.label :image, "Upload Photo", class: "form-label fw-bold text-white" %>
       <%= form.file_field :image, class: "form-control", accept: "image/*" %>
     </div>
     <%= form.submit "Submit Review", class: "btn mx-3 px-4 py-2 fw-bold text-white", style: "background-color: transparent; border: 1px solid white; border-radius: 25px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;", data: { turbo: false }, onclick: "this.form.submit(); this.disabled=true;" %>
   <% end %>
 </div>
-<style>
