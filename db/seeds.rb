@@ -69,14 +69,21 @@ countries = ['USA', 'Brazil', 'Australia', 'Thailand', 'Greece', 'Spain', 'Japan
 locations_per_country = 5
 max_attempts_per_country = 20
 
+# Initialize a cache for locations
+location_cache = {}
+
 countries.each do |country|
   country_locations = []
   attempts = 0
 
   while country_locations.count < locations_per_country && attempts < max_attempts_per_country
     keyword = keywords.sample
+    next if location_cache.key?("#{keyword}-#{country}")  # Skip if already queried
+
     begin
-      spots = client.spots_by_query("#{keyword} in #{country}", types: 'natural_feature', detail: true)
+      spots = client.spots_by_query("#{keyword} in #{country}", types: 'natural_feature', detail: true, fields: 'name,rating,formatted_address,geometry,photos')
+      location_cache["#{keyword}-#{country}"] = spots  # Cache the results
+
       spots.each do |spot|
         break if country_locations.count >= locations_per_country
         location = Location.create!(
