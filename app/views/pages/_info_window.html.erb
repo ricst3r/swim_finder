@@ -5,31 +5,34 @@
     No image available
   <% end %>
 </span>
-<div class="d-flex flex-column justify-content-between align-items-start fav">
-  <div class="d-flex justify-content-between align-items-start w-100">
-    <div class="location-info" style="text-decoration: none;">
-      <h5><%= location.name %></h5>
-      <% average_rating = location.reviews.average(:rating).to_f.round(1) %>
-      <% full_stars = average_rating.to_i %>
-      <% empty_stars = 5 - full_stars %>
-      <span class="stars">
-        <%= '★' * full_stars %>
-        <%= '☆' * empty_stars %>
-      </span>
-    </div>
-    <span>
-      <%= form_for [location, Favorite.new], url: location_favorites_path(location), method: :post do |f| %>
-        <%= f.button type: 'submit', class: "btn p-0 favorite-btn" do %>
-          <i class="fa-solid fa-heart" style="color: #ff0000;"></i>
-        <% end %>
-      <% end %>
+
+<div class="d-flex justify-content-between align-items-start w-100">
+  <div class="location-info">
+    <h5><%= link_to location.name, location_path(location), class: "text-decoration-none text-black" %></h5>
+    <% average_rating = location.reviews.average(:rating).to_f.round(1) %>
+    <% full_stars = average_rating.to_i %>
+    <% empty_stars = 5 - full_stars %>
+    <span class="stars">
+      <%= '★' * full_stars %>
+      <%= '☆' * empty_stars %>
     </span>
   </div>
-  <div class="amenities-icons mt-2">
-    <% location.reviews.flat_map(&:amenities).uniq.take(5).each do |amenity| %>
-      <span title="<%= amenity.title %>" class="mr-1">
-        <%= amenity.title.split.first %>
-      </span>
+  <div class="favorite-container">
+    <% if current_user.present? && current_user.favorites.map(&:location_id).include?(location.id) %>
+      <%= button_to location_favorites_path(location), method: :post, class: "btn-favorite-heart favorite-btn", disabled: true, style: "background: none; border: none;", title: "Add to Favorites", data: { controller: "favorite", action: "click->favorite#save" } do %>
+        <i class="fa-solid fa-heart heart-icon" style="color: #ff4d4d; transition: color 0.3s ease;"></i>
+      <% end %>
+    <% else %>
+      <%= button_to location_favorites_path(location), method: :post, class: "btn-favorite-heart favorite-btn", style: "background: none; border: none;", title: "Add to Favorites", data: { controller: "favorite", action: "click->favorite#save" } do %>
+        <i class="fa-solid fa-heart heart-icon" style="color: #ffcccb; transition: color 0.3s ease;"></i>
+      <% end %>
     <% end %>
   </div>
-  <%= link_to "", location_path(location), class: "stretched-link" %>
+</div>
+<div class="amenities-icons mt-2">
+  <% location.reviews.flat_map(&:amenities).uniq.take(5).each do |amenity| %>
+    <span title="<%= amenity.title %>" class="mr-1">
+      <%= amenity.title.split.first %>
+    </span>
+  <% end %>
+</div>

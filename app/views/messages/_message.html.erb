@@ -1,8 +1,11 @@
-  <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-content-start' %>">
+<div class="message-sender" style="margin-bottom: -11px;">
+      <span style="font-weight: 600;"><%= message.user.name %></span>
+    </div>
+  <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-content-start' %>" style="justify-content: flex-end;">
+    <div class="message-time" style="font-size: 0.8em; color: white; margin-right: 13px; margin-top: 31px;"><%= message.created_at.strftime("%H:%M") %></div>
     <div class="message-container <%= message.user == current_user ? 'sender-style' : 'receiver-style' %>">
       <div id="message-<%= message.id %>" class="message-content">
-        <div class="message-sender"><%= message.user.name %></div>
-        <div class="message-box">
+        <div class="message-box" style="border-radius: 10px; padding: 8px; background-color: #efe8e8a6; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
           <%= message.content %>
         </div>
       </div>
