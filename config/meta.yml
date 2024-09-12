@@ -1,5 +1,5 @@
 meta_product_name: "SwimFinder"
 meta_title: "SwimFinder, find the best open water swimmings spots and buddies in the world."
 meta_description: "SwimFinder helps you find the best open water swimmings spots and buddies in the world, from beginner to expert."
-# meta_image: "cover.png" # should exist in `app/assets/images/`
+meta_image: "cover.png" # should exist in `app/assets/images/`
 # twitter_account: "@swimfinder" # required for Twitter Cards
