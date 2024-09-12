@@ -21,7 +21,7 @@
               <i class="far fa-star text-warning"></i>
             <% end %>
           <% end %>
-          <span class="ml-2">(<%= average_rating %>)</span>
+         
         </p>
         <div class="amenities-icons d-flex justify-content-center">
           <% @location.reviews.flat_map(&:amenities).uniq.take(5).each do |amenity| %>
