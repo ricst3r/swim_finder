@@ -1,4 +1,4 @@
-<div class="message-sender" style="margin-bottom: -11px;">
+<div class="<%= message.user == current_user ? 'message-receiver' : 'message-sender' %>" style="margin-bottom: -11px;">
       <span style="font-weight: 600;"><%= message.user.name %></span>
     </div>
   <div class="message-row d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-start' %>" style="justify-content: flex-end;">
