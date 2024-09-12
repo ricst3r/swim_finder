@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<div class="chat-container">
+<div class="chat-container" style="overflow-y: auto; max-height: 500px;">
   <%= turbo_stream_from "chat_#{@chat.id}_messages" %>
   <div id="messages" class="messages-wrapper">
     <% @chat.messages.each do |message| %>
