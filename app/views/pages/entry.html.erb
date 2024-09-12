@@ -7,9 +7,9 @@
     <% end %>
   </div>
   <div class="wavy-text-container">
-      <%= link_to "Click   here   to   start".each_char.map.with_index { |char, index|
-        "<span style='--i: #{index}; font-family: \"Lobster Two\", sans-serif; font-weight: bold; font-size: 18px;'>#{char}</span>"
-      }.join.html_safe, home_path %>
+      <% "Click   here   to   start".each_char.with_index do |char, index| %>
+        <span style="--i: <%= index %>; font-family: 'Lobster Two', sans-serif; font-weight: bold; font-size: 18px;"><%= char %></span>
+      <% end %>
   </div>
 
 </div>
